@@ -40,11 +40,9 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonPrev;
     Button mButtonNext;
 
-
     void _log(String log){
         Log.v(TAG, log);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
