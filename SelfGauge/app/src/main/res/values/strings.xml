@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">요금폭탄 방지기</string>
+    <string name="action_settings">설정</string>
+    <string name="action_edit">편집</string>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="powerType">
+        <item>주택용 전력(저압)</item>
+        <item>주택용 전력(고압)</item>
+    </string-array>
+    <string-array name="powerType_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+
+    <string-array name="checkDay">
+        <item>매월 1일</item>
+        <item>매월 2일</item>
+        <item>매월 3일</item>
+        <item>매월 4일</item>
+        <item>매월 5일</item>
+        <item>매월 6일</item>
+        <item>매월 7일</item>
+        <item>매월 8일</item>
+        <item>매월 9일</item>
+        <item>매월 10일</item>
+        <item>매월 11일</item>
+        <item>매월 12일</item>
+        <item>매월 13일</item>
+        <item>매월 14일</item>
+        <item>매월 15일</item>
+        <item>매월 16일</item>
+        <item>매월 17일</item>
+        <item>매월 18일</item>
+        <item>매월 19일</item>
+        <item>매월 20일</item>
+        <item>매월 21일</item>
+        <item>매월 22일</item>
+        <item>매월 23일</item>
+        <item>매월 24일</item>
+        <item>매월 25일</item>
+        <item>매월 26일</item>
+        <item>매월 말일</item>
+    </string-array>
+    <string-array name="checkDay_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>100</item>
+    </string-array>
+</resources>

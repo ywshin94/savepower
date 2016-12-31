@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="pref"
+    android:title="설정1">
+
+    <ListPreference
+        android:key="checkDay"
+        android:title="검침 기준일"
+        android:summary="%s"
+        android:entries="@array/checkDay"
+        android:entryValues="@array/checkDay_values"
+        android:defaultValue="15"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        />
+
+    <ListPreference
+        android:key="powerType"
+        android:title="전기 종류"
+        android:summary="%s"
+        android:entries="@array/powerType"
+        android:entryValues="@array/powerType_values"
+        android:defaultValue="0"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        />
+</PreferenceScreen>
