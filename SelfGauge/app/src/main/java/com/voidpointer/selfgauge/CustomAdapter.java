@@ -1,6 +1,7 @@
 package com.voidpointer.selfgauge;
 
 import android.content.Context;
+import android.icu.text.IDNA;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,34 +59,64 @@ public class CustomAdapter extends BaseAdapter {
         return i;
     }
 
+    public boolean isImsiNode( InfoClass infoNode ){
+        boolean imsiNode = false;
+        // db에 입력된 값이 아니고, 임시로 추가된 node
+        // 기준 검침일에 검침값이 없을때나, 예상 전기요금 표시에 사용된다.
+        if(infoNode._id == -1 ){
+            imsiNode = true;
+        }
+
+        return imsiNode;
+    }
 
     // 상황에 따라서 날짜만 표시할지, 시간까지 표시할지 선택하기 위해서 함수를 따로 만듬
-    public void setDateString( int position, View v ){
+    public void setDateString( InfoClass infoNode, View v ){
         boolean menuExpand = false;
         RelativeLayout menuLayout = (RelativeLayout)v.findViewById(R.id.group3);
         if( menuLayout.getVisibility() == View.VISIBLE ) {
             menuExpand = true;
         }
 
-        InfoClass infoNode = mInfoList.get(position);
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(infoNode.datetime);
 
         TextView text1 = (TextView) v.findViewById(R.id.textDate);
-        if( menuExpand ) {
-            text1.setText(String.format("%d.%d.%d %02d:%02d",
-                    cal.get(Calendar.YEAR),
-                    cal.get(Calendar.MONTH) + 1,
-                    cal.get(Calendar.DAY_OF_MONTH),
-                    cal.get(Calendar.HOUR_OF_DAY),
-                    cal.get(Calendar.MINUTE)));
-        }else{
-            text1.setText(String.format("%d.%d.%d",
-                    cal.get(Calendar.YEAR),
-                    cal.get(Calendar.MONTH) + 1,
-                    cal.get(Calendar.DAY_OF_MONTH)));
+        if( isImsiNode(infoNode) ) {
+            text1.setText(MainActivity.getDateString(cal) + " (기준 검침일)");
         }
+        else {
+            if (menuExpand) {
+                text1.setText(MainActivity.getDateTimeString(cal));
+            } else {
+                text1.setText(MainActivity.getDateString(cal));
+            }
+        }
+    }
 
+    public void setUsageString(InfoClass infoNode, View v){
+        TextView text2 = (TextView) v.findViewById(R.id.textUsageTotal);
+        TextView text4 = (TextView) v.findViewById(R.id.textUsage);
+
+        if( isImsiNode(infoNode) ){
+            text2.setText("기준 검침량을 입력하세요");
+            text4.setText("");
+        }
+        else {
+            text2.setText(String.format("%d kWh", infoNode.usage));
+            text4.setText(String.format("%d kWh", getUsageThisMonth(infoNode.usage)));
+        }
+    }
+
+    public void setChargeString( InfoClass infoNode, View v){
+        TextView text3 = (TextView) v.findViewById(R.id.textCharge);
+        if( isImsiNode(infoNode) ){
+            text3.setText("");
+        }
+        else {
+            int charge = getElectricityBill(getUsageThisMonth(infoNode.usage));
+            text3.setText(String.format("%s원", getMoneyString(charge)));
+        }
     }
 
     @Override
@@ -100,19 +131,12 @@ public class CustomAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item, parent, false);
         }
+
         InfoClass infoNode = mInfoList.get(pos);
 
-        setDateString( pos, convertView );
-
-        TextView text2 = (TextView) convertView.findViewById(R.id.textUsageTotal);
-        text2.setText(String.format("%d kWh", infoNode.usage));
-
-        TextView text3 = (TextView) convertView.findViewById(R.id.textCharge);
-        int charge = getElectricityBill(getUsageThisMonth(infoNode.usage));
-        text3.setText(String.format("%s원", getMoneyString(charge)));
-
-        TextView text4 = (TextView) convertView.findViewById(R.id.textUsage);
-        text4.setText(String.format("%d kWh", getUsageThisMonth(infoNode.usage)));
+        setDateString( infoNode, convertView );
+        setUsageString( infoNode, convertView );
+        setChargeString( infoNode, convertView );
 
         // 삭제 버튼
         Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
@@ -151,7 +175,8 @@ public class CustomAdapter extends BaseAdapter {
                     mainLayout.setVisibility(View.VISIBLE);
                 }
 
-                setDateString( pos, v );
+                InfoClass infoNode = mInfoList.get(pos);
+                setDateString( infoNode, v );
             }
         });
 

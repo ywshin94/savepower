@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 addPowerUsage();
             }
         });
-
 
         mButtonPrev = (Button)findViewById(R.id.buttonPrev);
         mButtonNext = (Button)findViewById(R.id.buttonNext);
@@ -181,14 +181,21 @@ public class MainActivity extends AppCompatActivity {
         textDateRange.setText(getDateString(mCalStart) +" ~ "+ getDateString(mCalEnd));
     }
 
-    public String getDateString(Calendar calendar){
+    public String getDateString(long datetime){
+        Date d = new Date(datetime);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        return getDateString(cal);
+    }
+
+    public static String getDateString(Calendar calendar){
         return String.format("%04d.%02d.%02d",
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH)+1,
                 calendar.get(Calendar.DAY_OF_MONTH));
     }
 
-    public String getDateTimeString(Calendar calendar){
+    public static String getDateTimeString(Calendar calendar){
         return String.format("%04d.%02d.%02d-%02d:%02d:%02d:%03d",
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH)+1,
@@ -203,9 +210,12 @@ public class MainActivity extends AppCompatActivity {
      * DB에서 받아온 값을 ArrayList에 Add
      */
     private void setDatabaseToAdapter(){
+        _log("setDatabaseToAdapter()");
         mDbHelper.open();
         mCursor = mDbHelper.getRangeColumns(mCalStart, mCalEnd);
         _log("COUNT = " + mCursor.getCount());
+
+        boolean bFirst = true;
         while (mCursor.moveToNext()) {
             int id = mCursor.getInt(mCursor.getColumnIndex("_id"));
             long datetime = mCursor.getLong(mCursor.getColumnIndex("date"));
@@ -215,9 +225,18 @@ public class MainActivity extends AppCompatActivity {
 
             _log("id : " + id + ", datetime : " + datetime + ", usage : " + usage);
 
+            if( bFirst ){
+                _log("getDateString(datetime) : " + getDateString(datetime) + " - getDateString(mCalStart) : " + getDateString(mCalStart) );
+                if( !getDateString(datetime).equals(getDateString(mCalStart))){
+                    mInfoClass = new InfoClass( -1, mCalStart.getTimeInMillis(), type, 0, "" );
+                    mAdapter.add(mInfoClass);
+                }
+                bFirst = false;
+            }
             mInfoClass = new InfoClass( id, datetime, type, usage, deleted );
             mAdapter.add(mInfoClass);
         }
+
         mCursor.close();
         mDbHelper.close();
     }

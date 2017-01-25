@@ -1,12 +1,14 @@
 package com.voidpointer.selfgauge;
 
+import java.util.Calendar;
+
 /**
  * Created by SHIN on 2016-08-16.
  */
 public class InfoClass {
     public int _id;
     public long datetime;
-    public String type;
+    public String type;             // "power" , "gas"
     public int usage;
     public String deleted;
     public boolean selected;
@@ -21,6 +23,4 @@ public class InfoClass {
         this.deleted = deleted;
         this.selected = false;
     }
-
-
 }
