@@ -260,21 +260,34 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // 예상 요금
-        if( itemCount>=2 && bGijoonGap ) {
-            int usage_shift = lastcheck_usage - startdate_usage;
-            long datetime_shift = datetime - mCalStart.getTimeInMillis();
+        if( itemCount>=2 ) {
+            int month_usage;
+            String comment;
 
-            float usage_datetime = (float)usage_shift / (float)datetime_shift;
+            if( bGijoonGap ) {
+                int usage_shift = lastcheck_usage - startdate_usage;
+                long datetime_shift = datetime - mCalStart.getTimeInMillis();
 
-            long remain_datetime = mCalEnd.getTimeInMillis() - datetime;
-            int remain_usage = (int)(remain_datetime * usage_datetime);
-            int month_usage = lastcheck_usage + remain_usage;
+                float usage_datetime = (float) usage_shift / (float) datetime_shift;
 
-            _log("lastcheck_usage : " + lastcheck_usage);
-            _log("startdate_usage : " + startdate_usage);
-            _log("usage_shift : " + usage_shift);
+                long remain_datetime = mCalEnd.getTimeInMillis() - datetime;
+                int remain_days = (int) (remain_datetime / 1000. / 60. / 60. / 24.);
+                int remain_usage = (int) (remain_datetime * usage_datetime);
+                month_usage = lastcheck_usage + remain_usage;
 
-            mInfoClass = new InfoClass(-2, mCalEnd.getTimeInMillis(), type, month_usage, "no");
+                _log("lastcheck_usage : " + lastcheck_usage);
+                _log("startdate_usage : " + startdate_usage);
+                _log("usage_shift : " + usage_shift);
+
+                comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용하였습니다.\n다음 검침일까지 %d일 남았고,\n%.1f(kWh) 정도 더 사용할 예정입니다.",
+                        usage_datetime * 24 * 60 * 60 * 1000, remain_days, remain_datetime * usage_datetime);
+            }
+            else{
+                month_usage = 0;
+                comment = "지난달 검침결과를 입력해야 예상전기요금을 확인할 수 있습니다.";
+            }
+
+            mInfoClass = new InfoClass(-2, mCalEnd.getTimeInMillis(), type, month_usage, comment);
             mAdapter.add(mInfoClass);
         }
 

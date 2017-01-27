@@ -87,9 +87,6 @@ public class CustomAdapter extends BaseAdapter {
         if( isStartImsiNode(infoNode) ) {
             text1.setText(MainActivity.getDateString(cal) + " (기준 검침일)");
         }
-        else if( isEndImsiNode(infoNode) ) {
-            text1.setText(MainActivity.getDateString(cal) + " (예상 전기요금)");
-        }
         else {
             if (menuExpand) {
                 text1.setText(MainActivity.getDateTimeString(cal));
@@ -100,36 +97,62 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public void setUsageString(InfoClass infoNode, View v){
-        TextView text2 = (TextView) v.findViewById(R.id.textUsageTotal);
+        TextView text = (TextView) v.findViewById(R.id.textUsageTotal);
 
         if( isStartImsiNode(infoNode) ){
-            text2.setText("아직 검침하지 않았습니다.");
+            text.setText("지난달 검침결과를 입력해 주세요.");
         }
         else {
-            text2.setText(String.format("%d kWh", infoNode.usage));
+            text.setText(String.format("%d kWh", infoNode.usage));
         }
     }
 
     public void setUsageThisMonthString(InfoClass infoNode, View v){
-        TextView text4 = (TextView) v.findViewById(R.id.textUsage);
+        TextView text = (TextView) v.findViewById(R.id.textUsage);
 
         if( isStartImsiNode(infoNode) ){
-            text4.setText("");
+            text.setText("");
         }
-        else {
-            text4.setText(String.format("%d kWh", getUsageThisMonth(infoNode.usage)));
+        else if( isEndImsiNode(infoNode) ){
+            text.setText(String.format("%d kWh / %d kWh", infoNode.usage,  getUsageThisMonth(infoNode.usage)));
+        }
+        else{
+            text.setText(String.format("%d kWh", getUsageThisMonth(infoNode.usage)));
         }
     }
 
     public void setChargeString( InfoClass infoNode, View v){
-        TextView text3 = (TextView) v.findViewById(R.id.textCharge);
+        TextView text = (TextView) v.findViewById(R.id.textCharge);
         if( isStartImsiNode(infoNode) ){
-            text3.setText("");
+            text.setText("");
         }
-        else {
+        else if( isEndImsiNode(infoNode) ){
+            if( infoNode.usage > 0 ) {
+                int charge = getElectricityBill(getUsageThisMonth(infoNode.usage));
+                text.setText(String.format("예상전기요금 : %s원", getMoneyString(charge)));
+            }
+            else{
+                text.setText(String.format("예상전기요금 : ______원"));
+            }
+        }
+        else{
             int charge = getElectricityBill(getUsageThisMonth(infoNode.usage));
-            text3.setText(String.format("%s원", getMoneyString(charge)));
+            text.setText(String.format("%s원", getMoneyString(charge)));
         }
+    }
+
+    public void setForecastComment( InfoClass infoNode, View v){
+        TextView text = (TextView) v.findViewById(R.id.textComment);
+        if( isEndImsiNode(infoNode) ){
+            text.setText(infoNode.deleted);   //
+        }
+    }
+
+    public void setChargeInfoString( InfoClass infoNode, View v){
+        //TextView text = (TextView) v.findViewById(R.id.textInfo);
+        //if( isEndImsiNode(infoNode) ){
+        //    text.setText(infoNode.deleted);   //
+        //}
     }
 
     @Override
@@ -145,6 +168,17 @@ public class CustomAdapter extends BaseAdapter {
 
             setDateString( infoNode, convertView );
             setUsageString( infoNode, convertView );
+        }
+        else if( infoNode._id == -2 ) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.list_item_end, parent, false);
+
+            setForecastComment( infoNode, convertView );
+
+            //setDateString( infoNode, convertView );
+            //setUsageString( infoNode, convertView );
+            setUsageThisMonthString( infoNode, convertView );
+            setChargeString( infoNode, convertView );
         }
         else {
             // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
