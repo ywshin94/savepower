@@ -20,6 +20,8 @@ import android.widget.Button;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.R.attr.id;
+
 public class MainActivity extends AppCompatActivity {
 
     public static Context mContext;
@@ -213,27 +215,66 @@ public class MainActivity extends AppCompatActivity {
         _log("setDatabaseToAdapter()");
         mDbHelper.open();
         mCursor = mDbHelper.getRangeColumns(mCalStart, mCalEnd);
-        _log("COUNT = " + mCursor.getCount());
+
+        int itemCount = mCursor.getCount();
+        _log("COUNT = " + itemCount);
 
         boolean bFirst = true;
+        boolean bGijoonGap = false;
+
+        int startdate_usage = 0;
+        int lastcheck_usage = 0;
+
+        int id = -1;
+        long datetime = 0;
+        String type = "";
+        int usage = 0;
+        String deleted = "no";
+
         while (mCursor.moveToNext()) {
-            int id = mCursor.getInt(mCursor.getColumnIndex("_id"));
-            long datetime = mCursor.getLong(mCursor.getColumnIndex("date"));
-            String type = mCursor.getString(mCursor.getColumnIndex("type"));
-            int usage = mCursor.getInt(mCursor.getColumnIndex("usage"));
-            String deleted = mCursor.getString(mCursor.getColumnIndex("deleted"));
+            id = mCursor.getInt(mCursor.getColumnIndex("_id"));
+            datetime = mCursor.getLong(mCursor.getColumnIndex("date"));
+            type = mCursor.getString(mCursor.getColumnIndex("type"));
+            usage = mCursor.getInt(mCursor.getColumnIndex("usage"));
+            deleted = mCursor.getString(mCursor.getColumnIndex("deleted"));
 
             _log("id : " + id + ", datetime : " + datetime + ", usage : " + usage);
 
+            // 기준 검침일
             if( bFirst ){
                 _log("getDateString(datetime) : " + getDateString(datetime) + " - getDateString(mCalStart) : " + getDateString(mCalStart) );
                 if( !getDateString(datetime).equals(getDateString(mCalStart))){
-                    mInfoClass = new InfoClass( -1, mCalStart.getTimeInMillis(), type, 0, "" );
+                    mInfoClass = new InfoClass( -1, mCalStart.getTimeInMillis(), type, 0, "no" );
                     mAdapter.add(mInfoClass);
+                }
+                else {
+                    bGijoonGap = true;
+                    startdate_usage = usage;
                 }
                 bFirst = false;
             }
             mInfoClass = new InfoClass( id, datetime, type, usage, deleted );
+            mAdapter.add(mInfoClass);
+
+            lastcheck_usage = usage;
+        }
+
+        // 예상 요금
+        if( itemCount>=2 && bGijoonGap ) {
+            int usage_shift = lastcheck_usage - startdate_usage;
+            long datetime_shift = datetime - mCalStart.getTimeInMillis();
+
+            float usage_datetime = (float)usage_shift / (float)datetime_shift;
+
+            long remain_datetime = mCalEnd.getTimeInMillis() - datetime;
+            int remain_usage = (int)(remain_datetime * usage_datetime);
+            int month_usage = lastcheck_usage + remain_usage;
+
+            _log("lastcheck_usage : " + lastcheck_usage);
+            _log("startdate_usage : " + startdate_usage);
+            _log("usage_shift : " + usage_shift);
+
+            mInfoClass = new InfoClass(-2, mCalEnd.getTimeInMillis(), type, month_usage, "no");
             mAdapter.add(mInfoClass);
         }
 
@@ -334,28 +375,14 @@ public class MainActivity extends AppCompatActivity {
         addusage.show();
     }
 
-    public void editPowerUsage(InfoClass infoNode){
+    public void editPowerUsage(final InfoClass infoNode){
         AddUsage addusage = new AddUsage(this, infoNode, new AddUsage.IAddUsageEventListener() {
             @Override
             public void customDialogEvent(Calendar calendar, int usage) {
                 mDbHelper.open();
 
-                calendar.set(Calendar.SECOND, 0);
-                calendar.set(Calendar.MILLISECOND, 0);
-
                 long datetime = calendar.getTimeInMillis();
-                Cursor cursorCheck = mDbHelper.getMatch(datetime, "power");
-                if( cursorCheck != null && cursorCheck.getCount() > 0 ) {
-                    _log("중복->값 수정");
-                    long id = cursorCheck.getInt(cursorCheck.getColumnIndex("_id"));
-                    int oldusage = cursorCheck.getInt(cursorCheck.getColumnIndex("usage"));
-                    mDbHelper.updateColumn(id, datetime, "power", usage, "no");
-
-                }else {
-                    _log("중복아님");
-                    // 1. database
-                    long id = mDbHelper.insertColumn(datetime, "power", usage, "no");
-                }
+                mDbHelper.updateColumn(infoNode._id, datetime, infoNode.type, usage, infoNode.deleted);
 
                 //
                 mDbHelper.close();

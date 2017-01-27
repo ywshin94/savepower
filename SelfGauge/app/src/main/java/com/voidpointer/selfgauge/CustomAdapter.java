@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -60,14 +61,15 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public boolean isImsiNode( InfoClass infoNode ){
-        boolean imsiNode = false;
-        // db에 입력된 값이 아니고, 임시로 추가된 node
-        // 기준 검침일에 검침값이 없을때나, 예상 전기요금 표시에 사용된다.
-        if(infoNode._id == -1 ){
-            imsiNode = true;
-        }
+        return (infoNode._id < 0);
+    }
 
-        return imsiNode;
+    public boolean isStartImsiNode( InfoClass infoNode ){
+        return (infoNode._id == -1);
+    }
+
+    public boolean isEndImsiNode( InfoClass infoNode ){
+        return (infoNode._id == -2);
     }
 
     // 상황에 따라서 날짜만 표시할지, 시간까지 표시할지 선택하기 위해서 함수를 따로 만듬
@@ -82,8 +84,11 @@ public class CustomAdapter extends BaseAdapter {
         cal.setTimeInMillis(infoNode.datetime);
 
         TextView text1 = (TextView) v.findViewById(R.id.textDate);
-        if( isImsiNode(infoNode) ) {
+        if( isStartImsiNode(infoNode) ) {
             text1.setText(MainActivity.getDateString(cal) + " (기준 검침일)");
+        }
+        else if( isEndImsiNode(infoNode) ) {
+            text1.setText(MainActivity.getDateString(cal) + " (예상 전기요금)");
         }
         else {
             if (menuExpand) {
@@ -96,21 +101,29 @@ public class CustomAdapter extends BaseAdapter {
 
     public void setUsageString(InfoClass infoNode, View v){
         TextView text2 = (TextView) v.findViewById(R.id.textUsageTotal);
-        TextView text4 = (TextView) v.findViewById(R.id.textUsage);
 
-        if( isImsiNode(infoNode) ){
-            text2.setText("기준 검침량을 입력하세요");
-            text4.setText("");
+        if( isStartImsiNode(infoNode) ){
+            text2.setText("아직 검침하지 않았습니다.");
         }
         else {
             text2.setText(String.format("%d kWh", infoNode.usage));
+        }
+    }
+
+    public void setUsageThisMonthString(InfoClass infoNode, View v){
+        TextView text4 = (TextView) v.findViewById(R.id.textUsage);
+
+        if( isStartImsiNode(infoNode) ){
+            text4.setText("");
+        }
+        else {
             text4.setText(String.format("%d kWh", getUsageThisMonth(infoNode.usage)));
         }
     }
 
     public void setChargeString( InfoClass infoNode, View v){
         TextView text3 = (TextView) v.findViewById(R.id.textCharge);
-        if( isImsiNode(infoNode) ){
+        if( isStartImsiNode(infoNode) ){
             text3.setText("");
         }
         else {
@@ -121,82 +134,93 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
         final Context context = parent.getContext();
 
-        // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
-        if ( convertView == null ) {
-            Log.v("ywshin", String.format("convertView == null, position: %d", position));
-            // view가 null일 경우 커스텀 레이아웃을 얻어 옴
+        final int pos = position;
+        final InfoClass infoNode = mInfoList.get(pos);
+
+        if( infoNode._id == -1 ) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.list_item, parent, false);
+            convertView = inflater.inflate(R.layout.list_item_start, parent, false);
+
+            setDateString( infoNode, convertView );
+            setUsageString( infoNode, convertView );
+        }
+        else {
+            // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
+            if (convertView == null) {
+                Log.v("ywshin", String.format("convertView == null, position: %d", position));
+                // view가 null일 경우 커스텀 레이아웃을 얻어 옴
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.list_item, parent, false);
+            }
+
+            setDateString( infoNode, convertView );
+            setUsageString( infoNode, convertView );
+            setUsageThisMonthString( infoNode, convertView );
+            setChargeString( infoNode, convertView );
+
+            // 삭제 버튼
+            Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
+            btnDelete.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    //Toast.makeText(context, "삭제 클릭 : " + pos, Toast.LENGTH_SHORT).show();
+                    RelativeLayout mainLayout = (RelativeLayout)((ViewGroup)v.getParent()).findViewById(R.id.group3);
+                    mainLayout.setVisibility(View.GONE);
+                    ((MainActivity)MainActivity.mContext).deleteData( infoNode._id );
+                }
+            });
+
+            // 수정 버튼
+            Button btnEdit = (Button) convertView.findViewById(R.id.btnEdit);
+            btnEdit.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Toast.makeText(context, "수정 클릭 : " + pos, Toast.LENGTH_SHORT).show();
+                    ((MainActivity)MainActivity.mContext).editPowerUsage( infoNode );
+                }
+            });
+
+
+            // 리스트 아이템을 터치 했을 때 이벤트 발생
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 터치 시 해당 아이템 이름 출력
+                    //Calendar cal = Calendar.getInstance();
+                    //cal.setTimeInMillis(mInfoList.get(pos).datetime);
+                    //Toast.makeText(context, "리스트 클릭 : " + cal.toString(), Toast.LENGTH_SHORT).show();
+                    RelativeLayout mainLayout=(RelativeLayout)v.findViewById(R.id.group3);
+                    if( mainLayout.getVisibility() == View.VISIBLE ) {
+                        mainLayout.setVisibility(View.GONE);
+                    }else{
+                        mainLayout.setVisibility(View.VISIBLE);
+                    }
+
+                    InfoClass infoNode = mInfoList.get(pos);
+                    setDateString( infoNode, v );
+                }
+            });
+
+            // 리스트 아이템을 길게 터치 했을 떄 이벤트 발생
+            convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    // 터치 시 해당 아이템 이름 출력
+                    //Calendar cal = Calendar.getInstance();
+                    //cal.setTimeInMillis(mInfoList.get(pos).datetime);
+                    //Toast.makeText(context, "리스트 롱~클릭 : " + cal.toString(), Toast.LENGTH_SHORT).show();
+                    if( mInfoList.get(pos).selected ){
+                        mInfoList.get(pos).selected = false;
+                    }else{
+                        mInfoList.get(pos).selected = true;
+                    }
+
+                    return true;
+                }
+            });
         }
 
-        InfoClass infoNode = mInfoList.get(pos);
 
-        setDateString( infoNode, convertView );
-        setUsageString( infoNode, convertView );
-        setChargeString( infoNode, convertView );
-
-        // 삭제 버튼
-        Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                //Toast.makeText(context, "삭제 클릭 : " + pos, Toast.LENGTH_SHORT).show();
-                RelativeLayout mainLayout = (RelativeLayout)((ViewGroup)v.getParent()).findViewById(R.id.group3);
-                mainLayout.setVisibility(View.GONE);
-
-                InfoClass infoNode = mInfoList.get(pos);
-                ((MainActivity)MainActivity.mContext).deleteData( infoNode._id );
-            }
-        });
-
-        // 수정 버튼
-        Button btnEdit = (Button) convertView.findViewById(R.id.btnEdit);
-        btnEdit.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                //Toast.makeText(context, "수정 클릭 : " + pos, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        // 리스트 아이템을 터치 했을 때 이벤트 발생
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 터치 시 해당 아이템 이름 출력
-                //Calendar cal = Calendar.getInstance();
-                //cal.setTimeInMillis(mInfoList.get(pos).datetime);
-                //Toast.makeText(context, "리스트 클릭 : " + cal.toString(), Toast.LENGTH_SHORT).show();
-                RelativeLayout mainLayout=(RelativeLayout)v.findViewById(R.id.group3);
-                if( mainLayout.getVisibility() == View.VISIBLE ) {
-                    mainLayout.setVisibility(View.GONE);
-                }else{
-                    mainLayout.setVisibility(View.VISIBLE);
-                }
-
-                InfoClass infoNode = mInfoList.get(pos);
-                setDateString( infoNode, v );
-            }
-        });
-
-        // 리스트 아이템을 길게 터치 했을 떄 이벤트 발생
-        convertView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                // 터치 시 해당 아이템 이름 출력
-                //Calendar cal = Calendar.getInstance();
-                //cal.setTimeInMillis(mInfoList.get(pos).datetime);
-                //Toast.makeText(context, "리스트 롱~클릭 : " + cal.toString(), Toast.LENGTH_SHORT).show();
-                if( mInfoList.get(pos).selected ){
-                    mInfoList.get(pos).selected = false;
-                }else{
-                    mInfoList.get(pos).selected = true;
-                }
-
-                return true;
-            }
-        });
 
 
         if (infoNode.selected) {

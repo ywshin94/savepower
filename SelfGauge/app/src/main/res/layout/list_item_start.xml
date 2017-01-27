@@ -11,31 +11,16 @@
         android:id="@+id/group1"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        >
+        android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="Date"
             android:id="@+id/textDate"
-            android:textSize="18sp"
-            android:textAlignment="viewStart"
-            android:layout_gravity="start"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="Charge"
-            android:id="@+id/textCharge"
-            android:textSize="24sp"
-            android:textColor="@color/colorAccent"
-            android:textAlignment="viewEnd"
-            android:layout_gravity="end"/>
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_gravity="center" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -44,29 +29,16 @@
         android:layout_marginTop="1dp"
         android:id="@+id/group2"
         android:paddingLeft="5dp"
-        android:paddingRight="8dp">
+        android:paddingRight="8dp"
+        android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
             android:text="UsageTotal"
             android:id="@+id/textUsageTotal"
-            android:textSize="14sp"
-            android:textAlignment="viewStart"
-            android:layout_gravity="start"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="Usage"
-            android:id="@+id/textUsage"
-            android:textSize="14sp"
-            android:textAlignment="viewEnd"
-            android:layout_gravity="end"/>
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
     </RelativeLayout>
 
     <RelativeLayout
