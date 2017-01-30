@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     public int mPowerType = -1;
     public int mCheckDay = -1;
-    public Calendar mCalStart;
-    public Calendar mCalEnd;
+    public static Calendar mCalStart;
+    public static Calendar mCalEnd;
     public int mMonthShift = 0;
 
     Button mButtonPrev;
@@ -183,7 +183,15 @@ public class MainActivity extends AppCompatActivity {
         textDateRange.setText(getDateString(mCalStart) +" ~ "+ getDateString(mCalEnd));
     }
 
-    public String getDateString(long datetime){
+    public static boolean isStartDay(long datetime){
+        return getDateString(datetime).equals(getDateString(mCalStart));
+    }
+
+    public static boolean isEndDay(long datetime){
+        return getDateString(datetime).equals(getDateString(mCalEnd));
+    }
+
+    public static String getDateString(long datetime){
         Date d = new Date(datetime);
         Calendar cal = Calendar.getInstance();
         cal.setTime(d);
@@ -198,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static String getDateTimeString(Calendar calendar){
-        return String.format("%04d.%02d.%02d-%02d:%02d:%02d:%03d",
+        return String.format("%04d.%02d.%02d - %02d:%02d:%02d:%03d",
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH)+1,
                 calendar.get(Calendar.DAY_OF_MONTH),
@@ -297,9 +305,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setDatabaseToAdapterAfterAdd(){
         mAdapter.clear();
+        int count = mAdapter.getCount();
+
         mAdapter.notifyDataSetChanged();
 
         setDatabaseToAdapter();
+
+        int count2 = mAdapter.getCount();
 
         mAdapter.notifyDataSetChanged();
     }
@@ -377,6 +389,30 @@ public class MainActivity extends AppCompatActivity {
                     // 1. database
                     long id = mDbHelper.insertColumn(datetime, "power", usage, "no");
                 }
+
+                //
+                mDbHelper.close();
+                //
+                setDatabaseToAdapterAfterAdd();
+            }
+        });
+
+        addusage.show();
+    }
+
+    public void addPowerUsage(final InfoClass infoNode){
+        AddUsage addusage = new AddUsage(this, infoNode, new AddUsage.IAddUsageEventListener() {
+            @Override
+            public void customDialogEvent(Calendar calendar, int usage) {
+                mDbHelper.open();
+
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
+
+                long datetime = calendar.getTimeInMillis();
+
+                // 1. database
+                long id = mDbHelper.insertColumn(datetime, "power", usage, "no");
 
                 //
                 mDbHelper.close();

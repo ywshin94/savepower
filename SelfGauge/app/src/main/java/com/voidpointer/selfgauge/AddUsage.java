@@ -72,9 +72,15 @@ public class AddUsage extends Dialog {
         if( mMode == 1 ) {
             // edit mode
             mCalendar.setTimeInMillis(mInfoNode.datetime);
-            String strUsage = String.format("%d", mInfoNode.usage);
-            mEditUsage.setText(strUsage);
-            mBtnSave.setText("수정");
+            int usage = mInfoNode.usage;
+            if(usage>0) {
+                String strUsage = String.format("%d", mInfoNode.usage);
+                mEditUsage.setText(strUsage);
+                mBtnSave.setText("수정");
+            }
+            else {
+                mMode = 0;
+            }
         }
 
         setDateEdit(mCalendar, mEditDate);
