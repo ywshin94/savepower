@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // 예상 요금
-        if( itemCount>=2 ) {
+        if( itemCount>=2 && mMonthShift == 0) {
             int month_usage;
             String comment;
 
