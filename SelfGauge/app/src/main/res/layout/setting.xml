@@ -15,7 +15,9 @@
         android:id="@+id/textCheckday"
         android:textSize="16sp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -25,7 +27,9 @@
         android:id="@+id/editCheckday"
         android:layout_weight="1"
         android:layout_below="@+id/textCheckday"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,6 +39,7 @@
         android:id="@+id/textPowerType"
         android:layout_below="@+id/editCheckday"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="26dp"/>
 
     <Spinner
@@ -44,6 +49,7 @@
         android:id="@+id/spinnerPowerType"
         android:layout_below="@+id/textPowerType"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:spinnerMode="dropdown"
         />
 

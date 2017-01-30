@@ -9,7 +9,7 @@
         android:summary="%s"
         android:entries="@array/checkDay"
         android:entryValues="@array/checkDay_values"
-        android:defaultValue="15"
+        android:defaultValue="18"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         />
