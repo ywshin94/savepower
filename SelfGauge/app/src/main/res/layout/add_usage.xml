@@ -6,12 +6,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"
+        android:text="날짜"
         android:id="@+id/textDate"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
-        android:layout_alignParentStart="true" />
+        android:layout_marginLeft="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -24,16 +26,21 @@
         android:layout_marginEnd="24dp"
         android:layout_below="@+id/textDate"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"
+        android:text="시간"
         android:id="@+id/textTime"
         android:layout_marginTop="24dp"
         android:layout_below="@+id/editDate"
-        android:layout_alignStart="@+id/textDate" />
+        android:layout_alignStart="@+id/textDate"
+        android:layout_alignLeft="@+id/textDate"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -44,16 +51,21 @@
         android:layout_weight="1"
         android:layout_below="@+id/textTime"
         android:layout_alignStart="@+id/editDate"
-        android:layout_alignEnd="@+id/editDate"/>
+        android:layout_alignLeft="@+id/editDate"
+        android:layout_alignEnd="@+id/editDate"
+        android:layout_alignRight="@+id/editDate"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Electricity Usage"
+        android:text="전기 계량기 지침"
         android:id="@+id/textUsage"
         android:layout_marginTop="24dp"
         android:layout_below="@+id/editTime"
-        android:layout_alignStart="@+id/textDate" />
+        android:layout_alignStart="@+id/textDate"
+        android:layout_alignLeft="@+id/textDate"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -63,7 +75,9 @@
         android:id="@+id/editUsage"
         android:layout_below="@+id/textUsage"
         android:layout_alignStart="@+id/editDate"
+        android:layout_alignLeft="@+id/editDate"
         android:layout_alignEnd="@+id/editDate"
+        android:layout_alignRight="@+id/editDate"
         android:textSize="40dp"
         android:textStyle="bold"
         android:textColor="#eb760f"
@@ -72,10 +86,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="저장"
         android:id="@+id/buttonSave"
         android:layout_below="@+id/editUsage"
         android:layout_alignEnd="@+id/editUsage"
+        android:layout_alignRight="@+id/editUsage"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="14dp" />
 

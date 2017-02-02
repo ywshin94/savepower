@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.0_fa788dd169f467e8da7515e3532bfca8449d63bf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -30,51 +39,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_81571f1c70c207a2df158d0cdab42dce81170e7c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.0_d1798f7f5ac9d112c799df1e52c924c36c67c256\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4a9d5f73322ae82143f064994ce52fddccfbb0fa">
-        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_b495db06f03a8100b6e723dd1324d9a95fbf8405\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4b72dde27187f8308f642ef66ee822fbd3dbd507">
-        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_94fa0a24a89f98297c9a4cbba79a3514524ac799\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
-        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.0_fa788dd169f467e8da7515e3532bfca8449d63bf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\design\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -90,6 +54,15 @@
         revision="25.0.2"
         sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
         <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.0_92da9e9b1f783e99a69736d304d250ee580f4483\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_81571f1c70c207a2df158d0cdab42dce81170e7c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -111,6 +84,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.0_d1798f7f5ac9d112c799df1e52c924c36c67c256\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -126,6 +108,24 @@
         revision="25.0.2"
         sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
         <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.0_3d01be535a2fd35f156072f4774a3d9b3c280eb7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3b209e3a1283a18ad1a2b6d8a114f61137694ea3">
+        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_b495db06f03a8100b6e723dd1324d9a95fbf8405\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="06d51d12d8e45fde4377f377c112543f469ca26d">
+        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_94fa0a24a89f98297c9a4cbba79a3514524ac799\classes.dex" />
     </item>
     <item
         is-multidex="true"

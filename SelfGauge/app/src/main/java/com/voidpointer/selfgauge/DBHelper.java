@@ -1,13 +1,26 @@
 package com.voidpointer.selfgauge;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.util.Calendar;
 
 /**
@@ -118,5 +131,75 @@ public class DBHelper {
         }
         return c;
     }
+
+    public void exportDB() {
+
+        ////////////////////////////
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+            String strPackage = mContext.getPackageName();
+
+            if (sd.canWrite()) {
+                String currentDBPath = data.toString() + "/" + strPackage + "/databases/" + DATABASE_NAME;
+                String backupDir = sd.toString() + "/" + strPackage;
+                String backupDBPath = "/" + strPackage + "/" + DATABASE_NAME;
+
+                File fileDir = new File(backupDir);
+                if ( !fileDir.exists() ){
+                    // 디렉토리가 존재하지 않으면 디렉토리 생성
+                    fileDir.mkdir();
+                }
+
+                File currentDB = new File(data, currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                FileChannel src = new FileInputStream(currentDB).getChannel();
+                FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                dst.transferFrom(src, 0, src.size());
+                src.close();
+                dst.close();
+                Toast.makeText(mContext, "Backup Successful!", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+        catch (Exception e) {
+            Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT)
+                 .show();
+        }
+    }
+
+    /*
+    private void importDB() {
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+            if (sd.canWrite()) {
+                String currentDBPath = "//data//" + "<package name>"
+                        + "//databases//" + "<database name>";
+                String backupDBPath = "<backup db filename>"; // From SD directory.
+                File backupDB = new File(data, currentDBPath);
+                File currentDB = new File(sd, backupDBPath);
+
+                FileChannel src = new FileInputStream(backupDB).getChannel();
+                FileChannel dst = new FileOutputStream(currentDB).getChannel();
+                dst.transferFrom(src, 0, src.size());
+                src.close();
+                dst.close();
+                Toast.makeText(getApplicationContext(), "Import Successful!",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        } catch (Exception e) {
+
+            Toast.makeText(getApplicationContext(), "Import Failed!", Toast.LENGTH_SHORT)
+                    .show();
+
+        }
+    }
+    */
+
+
+
 
 }

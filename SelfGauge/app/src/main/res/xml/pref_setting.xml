@@ -5,7 +5,7 @@
 
     <ListPreference
         android:key="checkDay"
-        android:title="검침 기준일"
+        android:title="검침일"
         android:summary="%s"
         android:entries="@array/checkDay"
         android:entryValues="@array/checkDay_values"
