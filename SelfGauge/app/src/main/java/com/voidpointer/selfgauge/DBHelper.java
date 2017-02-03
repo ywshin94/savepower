@@ -27,7 +27,7 @@ import java.util.Calendar;
  * Created by SHIN on 2016-08-16.
  */
 public class DBHelper {
-    private static final String DATABASE_NAME = "test1.db";
+    private static final String DATABASE_NAME = "selfgauge.db";
     private static final int DATABASE_VERSION = 1;
     public static SQLiteDatabase mDB;
     private DatabaseHelper mDBHelper;
@@ -55,7 +55,18 @@ public class DBHelper {
     }
 
     public DBHelper open() throws SQLException {
-        mDBHelper = new DatabaseHelper(mContext, DATABASE_NAME, null, DATABASE_VERSION);
+        File sd = Environment.getExternalStorageDirectory();
+        String strPackage = mContext.getPackageName();
+        String dbDir = sd.toString() + "/" + strPackage + "/database";
+        String dbPath = dbDir + "/" + DATABASE_NAME;
+
+        File fileDir = new File(dbDir);
+        if (!fileDir.exists()) {
+            // 디렉토리가 존재하지 않으면 디렉토리 생성
+            fileDir.mkdirs();
+        }
+
+        mDBHelper = new DatabaseHelper(mContext, dbPath, null, DATABASE_VERSION);
         mDB = mDBHelper.getWritableDatabase();
         return this;
     }
@@ -133,11 +144,9 @@ public class DBHelper {
     }
 
     public void exportDB() {
-
-        ////////////////////////////
         try {
-            File sd = Environment.getExternalStorageDirectory();
             File data = Environment.getDataDirectory();
+            File sd = Environment.getExternalStorageDirectory();
             String strPackage = mContext.getPackageName();
 
             if (sd.canWrite()) {
@@ -159,12 +168,13 @@ public class DBHelper {
                 dst.transferFrom(src, 0, src.size());
                 src.close();
                 dst.close();
-                Toast.makeText(mContext, "Backup Successful!", Toast.LENGTH_SHORT)
+                Toast.makeText(mContext, "데이터를 백업했어요.", Toast.LENGTH_SHORT)
                         .show();
             }
         }
         catch (Exception e) {
-            Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT)
+            String errorMessage = e.getMessage();
+            Toast.makeText(mContext, "데이터 백업을 실패했어요.", Toast.LENGTH_LONG)
                  .show();
         }
     }

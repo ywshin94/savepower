@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonPrev;
     Button mButtonNext;
 
+    boolean mFirstCall = true;
+
     void _log(String log){
         Log.v(TAG, log);
     }
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         // ListView에 어댑터 연결
         mListView.setAdapter(mAdapter);
 
-        setDatabaseToAdapter();
+        //setDatabaseToAdapter();
     }
 
     @Override
@@ -124,14 +126,29 @@ public class MainActivity extends AppCompatActivity {
         _log("MainActivity... onResume");
         super.onResume();
 
+        if(mFirstCall){
+            mFirstCall = false;
+            if( getPermission() ) {
+                setDatabaseToAdapter();
+            }
+            return;
+        }
+
         int checkDay = getPrefCheckDay();
         int powerType = getPrefPowerType();
+
         if( mCheckDay != checkDay || mPowerType != powerType ){
             _log("reset");
             mCheckDay = checkDay;
             mPowerType = powerType;
             setDateRange();
-            setDatabaseToAdapterAfterAdd();
+
+            if( getPermission() ) {
+                setDatabaseToAdapterAfterAdd();
+            }
+        }
+        else {
+            getPermission();
         }
     }
 
@@ -314,13 +331,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setDatabaseToAdapterAfterAdd(){
         mAdapter.clear();
-        int count = mAdapter.getCount();
-
         mAdapter.notifyDataSetChanged();
 
         setDatabaseToAdapter();
-
-        int count2 = mAdapter.getCount();
 
         mAdapter.notifyDataSetChanged();
     }
@@ -377,6 +390,10 @@ public class MainActivity extends AppCompatActivity {
 
     //Dialog custom;
     public void addPowerUsage(){
+        if( !getPermission() ) {
+            return;
+        }
+
         AddUsage addusage = new AddUsage(this, new AddUsage.IAddUsageEventListener() {
             @Override
             public void customDialogEvent(Calendar calendar, int usage) {
@@ -404,9 +421,9 @@ public class MainActivity extends AppCompatActivity {
                 //
                 setDatabaseToAdapterAfterAdd();
 
-                if(getPermission()){
-                    mDbHelper.exportDB();
-                }
+                //if(getPermission()){
+                //    mDbHelper.exportDB();
+                //}
             }
         });
 
@@ -414,6 +431,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addPowerUsage(final InfoClass infoNode){
+        if( !getPermission() ) {
+            return;
+        }
+
         AddUsage addusage = new AddUsage(this, infoNode, new AddUsage.IAddUsageEventListener() {
             @Override
             public void customDialogEvent(Calendar calendar, int usage) {
@@ -433,9 +454,9 @@ public class MainActivity extends AppCompatActivity {
                 setDatabaseToAdapterAfterAdd();
 
                 //
-                if(getPermission()){
-                    mDbHelper.exportDB();
-                }
+                //if(getPermission()){
+                //    mDbHelper.exportDB();
+                //}
             }
         });
 
@@ -457,9 +478,9 @@ public class MainActivity extends AppCompatActivity {
                 setDatabaseToAdapterAfterAdd();
 
                 //
-                if(getPermission()){
-                    mDbHelper.exportDB();
-                }
+                //if(getPermission()){
+                //    mDbHelper.exportDB();
+                //}
             }
         });
 
@@ -469,36 +490,37 @@ public class MainActivity extends AppCompatActivity {
     public boolean getPermission(){
         boolean res = false;
         //
-        /* 사용자의 OS 버전이 마시멜로우 이상인지 체크한다. */
+        // 사용자의 OS 버전이 마시멜로우 이상인지 체크한다.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            /* 사용자 단말기의 권한 중 "전화걸기" 권한이 허용되어 있는지 체크한다.
-            *  int를 쓴 이유? 안드로이드는 C기반이기 때문에, Boolean 이 잘 안쓰인다.
-            */
-            int permissionResult = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            // 사용자 단말기의 권한이 허용되어 있는지 체크한다.
+            int permissionResultRead = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+            int permissionResultWrite = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-            /* WRITE_EXTERNAL_STORAGE의 권한이 없을 때 */
-            // 패키지는 안드로이드 어플리케이션의 아이디다.( 어플리케이션 구분자 )
-            if (permissionResult == PackageManager.PERMISSION_DENIED) {
-                /* 사용자가 CALL_PHONE 권한을 한번이라도 거부한 적이 있는 지 조사한다.
-                * 거부한 이력이 한번이라도 있다면, true를 리턴한다.
-                */
-                if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            // WRITE_EXTERNAL_STORAGE의 권한이 없을 때
+            if (permissionResultRead == PackageManager.PERMISSION_DENIED ||
+                    permissionResultWrite == PackageManager.PERMISSION_DENIED) {
+
+                // 사용자가 권한 요구를 한번이라도 거부한 적이 있는지 조사한다.
+                // 거부한 이력이 한번이라도 있다면, true를 리턴한다.
+                if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                        shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
                     AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                    dialog.setTitle("권한이 필요합니다.")
-                            .setMessage("이 기능을 사용하기 위해서는 단말기의 \"전화걸기\" 권한이 필요합니다. 계속하시겠습니까?")
+                    dialog.setTitle("권한 좀..")
+                            .setMessage("요금폭탄 방지기를 사용하기 위해서는 단말기의 외부 메모리에 접근할 수 있는 권한이 꼭 필요합니다. 계속 하시겠습니까?")
                             .setPositiveButton("네", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+                                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                                                                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
                                     }
                                 }
                             })
                             .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(MainActivity.this, "기능을 취소했습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "권한 요청을 거부하셨네요. 다음에는 꼭 부탁드립니다.", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .create()
@@ -506,16 +528,17 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //최초로 권한을 요청할 때
                 else {
-                    // WRITE_EXTERNAL_STORAGE 권한을 Android OS 에 요청한다.
-                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+                    // 권한을 Android OS 에 요청한다.
+                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                                                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
                 }
             }
-            /* WRITE_EXTERNAL_STORAGE 권한이 있을 때 */
+            // 권한이 있을 때
             else {
                 res = true;
             }
         }
-        /* 사용자의 OS 버전이 마시멜로우 이하일 떄 */
+        // 사용자의 OS 버전이 마시멜로우 이하일 때
         else {
             res = true;
         }
@@ -528,17 +551,21 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1000) {
             /* 요청한 권한을 사용자가 "허용"했다면 인텐트를 띄워라
                 내가 요청한 게 하나밖에 없기 때문에. 원래 같으면 for문을 돈다.*/
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    mDbHelper.exportDB();
+            int resultLength = grantResults.length;
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
+                int permissionResultRead = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+                int permissionResultWrite = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                if (permissionResultRead == PackageManager.PERMISSION_GRANTED &&
+                        permissionResultWrite == PackageManager.PERMISSION_GRANTED) {
+                    setDatabaseToAdapterAfterAdd();
                 }
             }
             else {
-                Toast.makeText(MainActivity.this, "권한 요청을 거부했습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "권한 요청을 거부하셨네요. ㅠㅠ", Toast.LENGTH_SHORT).show();
             }
         }
     }
-
-
-
 }

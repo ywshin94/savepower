@@ -24,4 +24,22 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         />
+
+    <Preference
+        android:key="exportDB"
+        android:title="데이터 내보내기"
+        android:summary="데이터를 안전한 곳에 보관할 수 있습니다. 혹시 모르니까요."
+        />
+
+    <Preference
+        android:key="importDB"
+        android:title="데이터 가져오기"
+        android:summary="보관해 둔 데이터를 가져올 수 있습니다."
+        />
+
+    <Preference
+        android:key="deleteDB"
+        android:title="데이터 삭제"
+        android:summary="모든 데이터를 삭제합니다. 삭제하기 전에 데이터를 안전한 곳에 보관해 두는게 좋겠습니다."
+        />
 </PreferenceScreen>
