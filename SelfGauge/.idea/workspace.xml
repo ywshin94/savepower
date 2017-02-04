@@ -18,10 +18,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_setting.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/pref_setting.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="SelfGauge.iws" />
@@ -58,24 +57,21 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1888">
-              <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+            <state relative-caret-position="-131">
+              <caret line="406" column="54" selection-start-line="406" selection-start-column="54" selection-end-line="406" selection-end-column="54" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1567#1568#0" expanded="false" />
-                <element signature="e#1598#1599#0" expanded="false" />
-                <element signature="e#2141#2142#0" expanded="false" />
-                <element signature="e#2188#2189#0" expanded="false" />
+                <element signature="e#13047#14276#0" expanded="true" />
+                <element signature="e#14275#14276#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SettingActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/SettingActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+            <state relative-caret-position="220">
+              <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -347,84 +343,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Environment.java" pinned="false" current-in-tab="false">
-        <entry file="file://C:/android_sdk/sources/android-25/android/os/Environment.java">
+      <file leaf-file-name="CustomAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2944">
-              <caret line="219" column="23" selection-start-line="219" selection-start-column="23" selection-end-line="219" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#34929#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#3244#3245#0" expanded="false" />
-                <element signature="e#3284#3285#0" expanded="false" />
-                <element signature="e#3751#3752#0" expanded="false" />
-                <element signature="e#3802#3803#0" expanded="false" />
-                <element signature="e#5462#5463#0" expanded="false" />
-                <element signature="e#5501#5502#0" expanded="false" />
-                <element signature="e#5568#5569#0" expanded="false" />
-                <element signature="e#5610#5611#0" expanded="false" />
-                <element signature="e#5833#5834#0" expanded="false" />
-                <element signature="e#5868#5869#0" expanded="false" />
-                <element signature="e#6091#6092#0" expanded="false" />
-                <element signature="e#6126#6127#0" expanded="false" />
-                <element signature="e#6372#6373#0" expanded="false" />
-                <element signature="e#6410#6411#0" expanded="false" />
-                <element signature="e#8076#8077#0" expanded="false" />
-                <element signature="e#8115#8116#0" expanded="false" />
-                <element signature="e#8435#8436#0" expanded="false" />
-                <element signature="e#8476#8477#0" expanded="false" />
-                <element signature="e#8546#8547#0" expanded="false" />
-                <element signature="e#8607#8608#0" expanded="false" />
-                <element signature="e#9485#9486#0" expanded="false" />
-                <element signature="e#9544#9545#0" expanded="false" />
-                <element signature="e#25633#25634#0" expanded="false" />
-                <element signature="e#25674#25675#0" expanded="false" />
-                <element signature="e#28870#28871#0" expanded="false" />
-                <element signature="e#28922#28923#0" expanded="false" />
-                <element signature="e#33107#33108#0" expanded="false" />
-                <element signature="e#33151#33152#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="204">
+              <caret line="138" column="10" selection-start-line="138" selection-start-column="10" selection-end-line="138" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java">
+      <file leaf-file-name="AddUsage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="103" column="29" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
+            <state relative-caret-position="142">
+              <caret line="166" column="21" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#727#728#0" expanded="false" />
-                <element signature="e#781#782#0" expanded="false" />
-                <element signature="e#848#849#0" expanded="false" />
-                <element signature="e#884#885#0" expanded="false" />
-                <element signature="e#925#926#0" expanded="false" />
-                <element signature="e#968#969#0" expanded="false" />
-                <element signature="e#995#996#0" expanded="false" />
-                <element signature="e#1028#1029#0" expanded="false" />
-                <element signature="e#1264#1265#0" expanded="false" />
-                <element signature="e#1303#1304#0" expanded="false" />
-                <element signature="e#1353#1354#0" expanded="false" />
-                <element signature="e#1392#1393#0" expanded="false" />
-                <element signature="e#1442#1443#0" expanded="false" />
-                <element signature="e#1466#1467#0" expanded="false" />
-                <element signature="e#1520#1521#0" expanded="false" />
-                <element signature="e#1561#1562#0" expanded="false" />
-                <element signature="e#1620#1621#0" expanded="false" />
-                <element signature="e#1663#1664#0" expanded="false" />
-                <element signature="e#1725#1726#0" expanded="false" />
-                <element signature="e#1768#1769#0" expanded="false" />
-                <element signature="e#5026#5282#0" expanded="false" />
-                <element signature="e#5281#5282#0" expanded="false" />
-                <element signature="e#6053#6514#0" expanded="false" />
-                <element signature="e#6513#6514#0" expanded="false" />
-                <element signature="e#6656#6940#0" expanded="false" />
-                <element signature="e#6939#6940#0" expanded="false" />
-                <element signature="e#7027#7941#0" expanded="false" />
-                <element signature="e#7940#7941#0" expanded="false" />
-                <element signature="e#8034#8716#0" expanded="false" />
-                <element signature="e#8715#8716#0" expanded="false" />
+                <element signature="e#2925#3639#0" expanded="true" />
+                <element signature="e#3638#3639#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2136,23 +2072,22 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_item_start.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/round_forecast.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_item_end.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/setting.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/add_usage.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="C:/android_sdk/platforms/android-25/android.jar!/android/Manifest.class" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_setting.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/SettingActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1370" />
+    <option name="width" value="1049" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -2247,7 +2182,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="00a5f58379a9aaeb" />
+    <property name="device.picker.selection" value="Nexus_5X_API_25_x86" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="384" />
   </component>
@@ -2625,7 +2560,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486044133894</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="권한 요구 추가&#10;read/write&#10;db 백업 기능을 없애고, 처음부터 권한을 얻어서 sd카드에 db파일을 만드는 방법으로 수정&#10;&#10;Setting 창에 아이템 추가중&#10;  - 터치 이벤트 처리방법 구상중">
+      <created>1486113893833</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1486113893833</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2638,7 +2580,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
+    <frame x="-8" y="0" width="1049" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2650,7 +2592,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24961832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31452993" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48376068" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32820514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2662,7 +2604,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24427481" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36804855" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2694,7 +2636,8 @@
     <MESSAGE value="마지막 달에서만 예상 전기용금 아이템 표시함" />
     <MESSAGE value="default 검침일 18일로 고정" />
     <MESSAGE value="db 백업 기능 추가중&#10;쓰기 권한 추가&#10;아직 정리가 필요함." />
-    <option name="LAST_COMMIT_MESSAGE" value="db 백업 기능 추가중&#10;쓰기 권한 추가&#10;아직 정리가 필요함." />
+    <MESSAGE value="권한 요구 추가&#10;read/write&#10;db 백업 기능을 없애고, 처음부터 권한을 얻어서 sd카드에 db파일을 만드는 방법으로 수정&#10;&#10;Setting 창에 아이템 추가중&#10;  - 터치 이벤트 처리방법 구상중" />
+    <option name="LAST_COMMIT_MESSAGE" value="권한 요구 추가&#10;read/write&#10;db 백업 기능을 없애고, 처음부터 권한을 얻어서 sd카드에 db파일을 만드는 방법으로 수정&#10;&#10;Setting 창에 아이템 추가중&#10;  - 터치 이벤트 처리방법 구상중" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2705,11 +2648,29 @@
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java</url>
+          <line>72</line>
+          <properties />
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java</url>
+          <line>167</line>
+          <properties />
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java</url>
+          <line>177</line>
+          <properties />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="69" />
+      <option name="time" value="72" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2719,11 +2680,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1598#1599#0" expanded="false" />
-            <element signature="e#2141#2142#0" expanded="false" />
-            <element signature="e#2188#2189#0" expanded="false" />
+            <element signature="e#13047#14276#0" expanded="true" />
+            <element signature="e#14275#14276#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2740,6 +2698,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2764,11 +2725,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1598#1599#0" expanded="false" />
-            <element signature="e#2141#2142#0" expanded="false" />
-            <element signature="e#2188#2189#0" expanded="false" />
+            <element signature="e#13047#14276#0" expanded="true" />
+            <element signature="e#14275#14276#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2785,6 +2743,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2809,11 +2770,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1598#1599#0" expanded="false" />
-            <element signature="e#2141#2142#0" expanded="false" />
-            <element signature="e#2188#2189#0" expanded="false" />
+            <element signature="e#13047#14276#0" expanded="true" />
+            <element signature="e#14275#14276#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2830,6 +2788,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2854,11 +2815,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1598#1599#0" expanded="false" />
-            <element signature="e#2141#2142#0" expanded="false" />
-            <element signature="e#2188#2189#0" expanded="false" />
+            <element signature="e#13047#14276#0" expanded="true" />
+            <element signature="e#14275#14276#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2875,6 +2833,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2976,6 +2937,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1152">
           <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3001,6 +2963,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3011,6 +2974,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3021,6 +2985,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3028,6 +2995,120 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8784">
           <caret line="688" column="15" selection-start-line="688" selection-start-column="15" selection-end-line="688" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#24701#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1824#1825#0" expanded="false" />
+            <element signature="e#1852#1853#0" expanded="false" />
+            <element signature="e#2455#2456#0" expanded="false" />
+            <element signature="e#2483#2484#0" expanded="false" />
+            <element signature="e#2536#2537#0" expanded="false" />
+            <element signature="e#2576#2577#0" expanded="false" />
+            <element signature="e#2629#2630#0" expanded="false" />
+            <element signature="e#2672#2673#0" expanded="false" />
+            <element signature="e#2735#2736#0" expanded="false" />
+            <element signature="e#2783#2784#0" expanded="false" />
+            <element signature="e#2848#2849#0" expanded="false" />
+            <element signature="e#2897#2898#0" expanded="false" />
+            <element signature="e#2948#2949#0" expanded="false" />
+            <element signature="e#2992#2993#0" expanded="false" />
+            <element signature="e#3056#3057#0" expanded="false" />
+            <element signature="e#3108#3109#0" expanded="false" />
+            <element signature="e#3165#3166#0" expanded="false" />
+            <element signature="e#3202#3203#0" expanded="false" />
+            <element signature="e#3267#3268#0" expanded="false" />
+            <element signature="e#3311#3312#0" expanded="false" />
+            <element signature="e#3366#3367#0" expanded="false" />
+            <element signature="e#3405#3406#0" expanded="false" />
+            <element signature="e#3462#3463#0" expanded="false" />
+            <element signature="e#3507#3508#0" expanded="false" />
+            <element signature="e#3559#3560#0" expanded="false" />
+            <element signature="e#3604#3605#0" expanded="false" />
+            <element signature="e#3677#3678#0" expanded="false" />
+            <element signature="e#3726#3727#0" expanded="false" />
+            <element signature="e#3797#3798#0" expanded="false" />
+            <element signature="e#3844#3845#0" expanded="false" />
+            <element signature="e#3909#3910#0" expanded="false" />
+            <element signature="e#3958#3959#0" expanded="false" />
+            <element signature="e#4022#4023#0" expanded="false" />
+            <element signature="e#4075#4076#0" expanded="false" />
+            <element signature="e#4131#4132#0" expanded="false" />
+            <element signature="e#4180#4181#0" expanded="false" />
+            <element signature="e#5195#5196#0" expanded="false" />
+            <element signature="e#5240#5241#0" expanded="false" />
+            <element signature="e#5304#5305#0" expanded="false" />
+            <element signature="e#5356#5357#0" expanded="false" />
+            <element signature="e#5554#5555#0" expanded="false" />
+            <element signature="e#5593#5594#0" expanded="false" />
+            <element signature="e#5639#5640#0" expanded="false" />
+            <element signature="e#5680#5681#0" expanded="false" />
+            <element signature="e#5727#5728#0" expanded="false" />
+            <element signature="e#5769#5770#0" expanded="false" />
+            <element signature="e#5824#5825#0" expanded="false" />
+            <element signature="e#5874#5875#0" expanded="false" />
+            <element signature="e#5940#5941#0" expanded="false" />
+            <element signature="e#5994#5995#0" expanded="false" />
+            <element signature="e#6063#6064#0" expanded="false" />
+            <element signature="e#6118#6119#0" expanded="false" />
+            <element signature="e#6163#6164#0" expanded="false" />
+            <element signature="e#6203#6204#0" expanded="false" />
+            <element signature="e#6251#6252#0" expanded="false" />
+            <element signature="e#6292#6293#0" expanded="false" />
+            <element signature="e#6339#6340#0" expanded="false" />
+            <element signature="e#6381#6382#0" expanded="false" />
+            <element signature="e#6432#6433#0" expanded="false" />
+            <element signature="e#6478#6479#0" expanded="false" />
+            <element signature="e#6533#6534#0" expanded="false" />
+            <element signature="e#6583#6584#0" expanded="false" />
+            <element signature="e#6641#6642#0" expanded="false" />
+            <element signature="e#6692#6693#0" expanded="false" />
+            <element signature="e#6750#6751#0" expanded="false" />
+            <element signature="e#6801#6802#0" expanded="false" />
+            <element signature="e#6864#6865#0" expanded="false" />
+            <element signature="e#6911#6912#0" expanded="false" />
+            <element signature="e#7551#7552#0" expanded="false" />
+            <element signature="e#7600#7601#0" expanded="false" />
+            <element signature="e#7662#7663#0" expanded="false" />
+            <element signature="e#7712#7713#0" expanded="false" />
+            <element signature="e#7764#7765#0" expanded="false" />
+            <element signature="e#7807#7808#0" expanded="false" />
+            <element signature="e#7875#7876#0" expanded="false" />
+            <element signature="e#7918#7919#0" expanded="false" />
+            <element signature="e#7987#7988#0" expanded="false" />
+            <element signature="e#8031#8032#0" expanded="false" />
+            <element signature="e#8113#8114#0" expanded="false" />
+            <element signature="e#8175#8176#0" expanded="false" />
+            <element signature="e#8783#8784#0" expanded="false" />
+            <element signature="e#8826#8827#0" expanded="false" />
+            <element signature="e#9263#9264#0" expanded="false" />
+            <element signature="e#9319#9320#0" expanded="false" />
+            <element signature="e#9698#9699#0" expanded="false" />
+            <element signature="e#9744#9745#0" expanded="false" />
+            <element signature="e#10811#10812#0" expanded="false" />
+            <element signature="e#10854#10855#0" expanded="false" />
+            <element signature="e#15119#15120#0" expanded="false" />
+            <element signature="e#15168#15169#0" expanded="false" />
+            <element signature="e#15638#15639#0" expanded="false" />
+            <element signature="e#15689#15690#0" expanded="false" />
+            <element signature="e#17631#17632#0" expanded="false" />
+            <element signature="e#17681#17682#0" expanded="false" />
+            <element signature="e#17742#17743#0" expanded="false" />
+            <element signature="e#17788#17789#0" expanded="false" />
+            <element signature="e#18589#18590#0" expanded="false" />
+            <element signature="e#18630#18631#0" expanded="false" />
+            <element signature="e#18911#18912#0" expanded="false" />
+            <element signature="e#18962#18963#0" expanded="false" />
+            <element signature="e#23372#23373#0" expanded="false" />
+            <element signature="e#23412#23413#0" expanded="false" />
+            <element signature="e#23773#23774#0" expanded="false" />
+            <element signature="e#23816#23817#0" expanded="false" />
+            <element signature="e#24056#24057#0" expanded="false" />
+            <element signature="e#24097#24098#0" expanded="false" />
+            <element signature="e#24482#24483#0" expanded="false" />
+            <element signature="e#24537#24538#0" expanded="false" />
+            <element signature="e#24638#24639#0" expanded="false" />
+            <element signature="e#24697#24698#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3035,6 +3116,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15984">
           <caret line="1066" column="31" selection-start-line="1066" selection-start-column="31" selection-end-line="1066" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#385022#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#39422#39423#0" expanded="false" />
+            <element signature="e#39454#39455#0" expanded="false" />
+            <element signature="e#39666#39667#0" expanded="false" />
+            <element signature="e#39709#39710#0" expanded="false" />
+            <element signature="e#226019#226020#0" expanded="false" />
+            <element signature="e#226058#226059#0" expanded="false" />
+            <element signature="e#226594#226595#0" expanded="false" />
+            <element signature="e#226640#226641#0" expanded="false" />
+            <element signature="e#227150#227151#0" expanded="false" />
+            <element signature="e#227183#227184#0" expanded="false" />
+            <element signature="e#271515#271516#0" expanded="false" />
+            <element signature="e#271545#271546#0" expanded="false" />
+            <element signature="e#271991#271992#0" expanded="false" />
+            <element signature="e#272019#272020#0" expanded="false" />
+            <element signature="e#272160#272161#0" expanded="false" />
+            <element signature="e#272222#272223#0" expanded="false" />
+            <element signature="e#272668#272669#0" expanded="false" />
+            <element signature="e#272731#272732#0" expanded="false" />
+            <element signature="e#273091#273092#0" expanded="false" />
+            <element signature="e#273119#273120#0" expanded="false" />
+            <element signature="e#273555#273556#0" expanded="false" />
+            <element signature="e#273619#273620#0" expanded="false" />
+            <element signature="e#275816#275817#0" expanded="false" />
+            <element signature="e#275850#275851#0" expanded="false" />
+            <element signature="e#276086#276087#0" expanded="false" />
+            <element signature="e#276118#276119#0" expanded="false" />
+            <element signature="e#276355#276356#0" expanded="false" />
+            <element signature="e#276387#276388#0" expanded="false" />
+            <element signature="e#276443#276444#0" expanded="false" />
+            <element signature="e#276482#276483#0" expanded="false" />
+            <element signature="e#277109#277110#0" expanded="false" />
+            <element signature="e#277176#277177#0" expanded="false" />
+            <element signature="e#277387#277388#0" expanded="false" />
+            <element signature="e#277457#277458#0" expanded="false" />
+            <element signature="e#278109#278110#0" expanded="false" />
+            <element signature="e#278152#278153#0" expanded="false" />
+            <element signature="e#293697#293698#0" expanded="false" />
+            <element signature="e#293726#293727#0" expanded="false" />
+            <element signature="e#294317#294318#0" expanded="false" />
+            <element signature="e#294348#294349#0" expanded="false" />
+            <element signature="e#294828#294829#0" expanded="false" />
+            <element signature="e#294861#294862#0" expanded="false" />
+            <element signature="e#295120#295121#0" expanded="false" />
+            <element signature="e#295156#295157#0" expanded="false" />
+            <element signature="e#302295#302296#0" expanded="false" />
+            <element signature="e#302349#302350#0" expanded="false" />
+            <element signature="e#304350#304351#0" expanded="false" />
+            <element signature="e#304405#304406#0" expanded="false" />
+            <element signature="e#311908#311909#0" expanded="false" />
+            <element signature="e#311940#311941#0" expanded="false" />
+            <element signature="e#352342#352343#0" expanded="false" />
+            <element signature="e#352380#352381#0" expanded="false" />
+            <element signature="e#352711#352712#0" expanded="false" />
+            <element signature="e#352751#352752#0" expanded="false" />
+            <element signature="e#358869#358870#0" expanded="false" />
+            <element signature="e#358900#358901#0" expanded="false" />
+            <element signature="e#365767#365768#0" expanded="false" />
+            <element signature="e#365840#365841#0" expanded="false" />
+            <element signature="e#367149#367150#0" expanded="false" />
+            <element signature="e#367194#367195#0" expanded="false" />
+            <element signature="e#367239#367240#0" expanded="false" />
+            <element signature="e#367286#367287#0" expanded="false" />
+            <element signature="e#367345#367346#0" expanded="false" />
+            <element signature="e#367379#367380#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3042,13 +3191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2768">
           <caret line="181" column="35" selection-start-line="181" selection-start-column="35" selection-end-line="181" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="122" column="28" selection-start-line="122" selection-start-column="28" selection-end-line="122" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -3087,46 +3229,6 @@
             <element signature="e#28922#28923#0" expanded="false" />
             <element signature="e#33107#33108#0" expanded="false" />
             <element signature="e#33151#33152#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="103" column="29" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#727#728#0" expanded="false" />
-            <element signature="e#781#782#0" expanded="false" />
-            <element signature="e#848#849#0" expanded="false" />
-            <element signature="e#884#885#0" expanded="false" />
-            <element signature="e#925#926#0" expanded="false" />
-            <element signature="e#968#969#0" expanded="false" />
-            <element signature="e#995#996#0" expanded="false" />
-            <element signature="e#1028#1029#0" expanded="false" />
-            <element signature="e#1264#1265#0" expanded="false" />
-            <element signature="e#1303#1304#0" expanded="false" />
-            <element signature="e#1353#1354#0" expanded="false" />
-            <element signature="e#1392#1393#0" expanded="false" />
-            <element signature="e#1442#1443#0" expanded="false" />
-            <element signature="e#1466#1467#0" expanded="false" />
-            <element signature="e#1520#1521#0" expanded="false" />
-            <element signature="e#1561#1562#0" expanded="false" />
-            <element signature="e#1620#1621#0" expanded="false" />
-            <element signature="e#1663#1664#0" expanded="false" />
-            <element signature="e#1725#1726#0" expanded="false" />
-            <element signature="e#1768#1769#0" expanded="false" />
-            <element signature="e#5026#5282#0" expanded="false" />
-            <element signature="e#5281#5282#0" expanded="false" />
-            <element signature="e#6053#6514#0" expanded="false" />
-            <element signature="e#6513#6514#0" expanded="false" />
-            <element signature="e#6656#6940#0" expanded="false" />
-            <element signature="e#6939#6940#0" expanded="false" />
-            <element signature="e#7027#7941#0" expanded="false" />
-            <element signature="e#7940#7941#0" expanded="false" />
-            <element signature="e#8034#8716#0" expanded="false" />
-            <element signature="e#8715#8716#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3382,20 +3484,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1888">
-          <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1598#1599#0" expanded="false" />
-            <element signature="e#2141#2142#0" expanded="false" />
-            <element signature="e#2188#2189#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_setting.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -3409,9 +3497,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/SettingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+        <state relative-caret-position="220">
+          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="138" column="10" selection-start-line="138" selection-start-column="10" selection-end-line="138" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-131">
+          <caret line="406" column="54" selection-start-line="406" selection-start-column="54" selection-end-line="406" selection-end-column="54" />
+          <folding>
+            <element signature="e#13047#14276#0" expanded="true" />
+            <element signature="e#14275#14276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="166" column="21" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
+          <folding>
+            <element signature="e#2925#3639#0" expanded="true" />
+            <element signature="e#3638#3639#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

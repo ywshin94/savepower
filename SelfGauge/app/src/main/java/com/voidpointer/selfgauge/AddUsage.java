@@ -69,6 +69,9 @@ public class AddUsage extends Dialog {
         mBtnSave = (Button)findViewById(R.id.buttonSave);
 
         mCalendar = Calendar.getInstance();
+        long now = System.currentTimeMillis();
+        mCalendar.setTimeInMillis(now);
+
         if( mMode == 1 ) {
             // edit mode
             mCalendar.setTimeInMillis(mInfoNode.datetime);

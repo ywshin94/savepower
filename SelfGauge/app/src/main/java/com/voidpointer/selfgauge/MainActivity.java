@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         _log( "mCheckDay : " + mCheckDay );
-        if( mCheckDay == 100 ){
+        if( mCheckDay == 100 ){ //매월 말일
             int day = mCalStart.getActualMaximum( Calendar.DAY_OF_MONTH );
             mCalStart.set(Calendar.DAY_OF_MONTH, day);
         }else{
@@ -278,7 +278,11 @@ public class MainActivity extends AppCompatActivity {
             if( bFirst ){
                 _log("getDateString(datetime) : " + getDateString(datetime) + " - getDateString(mCalStart) : " + getDateString(mCalStart) );
                 if( !getDateString(datetime).equals(getDateString(mCalStart))){
-                    mInfoClass = new InfoClass( -1, mCalStart.getTimeInMillis(), type, 0, "no" );
+                    //리스트의 첫번째 날짜가 지난달 검침일이 아닐 때
+                    Calendar addCalendar = Calendar.getInstance();
+                    addCalendar.setTimeInMillis(mCalStart.getTimeInMillis());
+                    addCalendar.set(Calendar.HOUR_OF_DAY, 12);  // mCalStart 를 받아서 시간을 낮 12시로 고침
+                    mInfoClass = new InfoClass( -1, addCalendar.getTimeInMillis(), type, 0, "no" );
                     mAdapter.add(mInfoClass);
                 }
                 else {
@@ -313,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                 _log("startdate_usage : " + startdate_usage);
                 _log("usage_shift : " + usage_shift);
 
-                comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용하였습니다.\n다음 검침일까지 %d일 남았고,\n%.1f(kWh) 정도 더 사용할 예정입니다.",
+                comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용했습니다.\n검침일까지 %d일 남았고, %.1f(kWh) 정도 더 사용할것 같아요.",
                         usage_datetime * 24 * 60 * 60 * 1000, remain_days, remain_datetime * usage_datetime);
             }
             else{

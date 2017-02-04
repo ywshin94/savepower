@@ -134,7 +134,7 @@ public class CustomAdapter extends BaseAdapter {
 
         //
         text = (TextView) v.findViewById(R.id.textUsage);
-        text.setText(String.format("%d kWh / %d kWh", infoNode.usage,  getUsageThisMonth(infoNode.usage)));
+        text.setText(String.format("예상지침 : %d kWh / 예상사용량 : %d kWh", infoNode.usage,  getUsageThisMonth(infoNode.usage)));
 
         //
         text = (TextView) v.findViewById(R.id.textCharge);
