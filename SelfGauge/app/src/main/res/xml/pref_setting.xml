@@ -42,4 +42,14 @@
         android:title="데이터 삭제"
         android:summary="모든 데이터를 삭제합니다. 삭제하기 전에 데이터를 안전한 곳에 보관해 두는게 좋겠습니다."
         />
+
+    <Preference
+        android:key="sendMail"
+        android:title="메일 보내기"
+        android:summary="개발자에게 메일을 보냅니다">
+        <intent
+            android:action="android.intent.action.SENDTO"
+            android:data="mailto:ywshin94@gmail.com" />
+    </Preference>
+
 </PreferenceScreen>

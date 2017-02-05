@@ -7,6 +7,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -59,6 +60,25 @@ public class SettingActivity extends PreferenceActivity {
             _log( "MyPreferenceFragment... onCreate" );
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_setting);
+        }
+
+        @Override
+        public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+            String mKey = preference.getKey();
+            if(mKey.equals("exportDB")){
+                _log("exportDB");
+            }
+            else if(mKey.equals("importDB")){
+                _log("importDB");
+            }
+            else if(mKey.equals("deleteDB")){
+                _log("deleteDB");
+            }
+            else if(mKey.equals("sendMail")){
+                _log("sendMail");
+            }
+
+            return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
 
         @Override
