@@ -2465,7 +2465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486302099652</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="설정창에서 기본 Preference를 클릴 했을때 이벤트 받는 방법을 알아내&#10;  - 남들도 이렇게 하는지는 모르겠지만, 되긴 됨.">
+      <created>1486302409240</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1486302409240</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
