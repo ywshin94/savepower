@@ -1,10 +1,13 @@
 package com.voidpointer.selfgauge;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,10 +15,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
+
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 /**
  * Created by SHIN on 2016-08-16.
@@ -55,6 +64,7 @@ public class AddUsage extends Dialog {
         this.mMode = 1;  // edit mode
         this.mInfoNode = infoNode;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,5 +191,20 @@ public class AddUsage extends Dialog {
 
         String strTime = String.format("%s %d : %02d", ampm, hour, min);
         edit.setText(strTime);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        ShowHowTo();
+    }
+
+    public void ShowHowTo(){
+        Dialog dialog = new Dialog(this.mContext);
+        dialog.setContentView(R.layout.howto);
+        dialog.setTitle("이렇게 입력하세요");
+        dialog.setCancelable(true);
+
+        dialog.show();
     }
 }

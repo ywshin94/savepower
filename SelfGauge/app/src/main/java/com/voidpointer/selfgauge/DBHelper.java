@@ -23,6 +23,8 @@ import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 import java.util.Calendar;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+
 /**
  * Created by SHIN on 2016-08-16.
  */
@@ -31,7 +33,7 @@ public class DBHelper {
     private static final int DATABASE_VERSION = 1;
     public static SQLiteDatabase mDB;
     private DatabaseHelper mDBHelper;
-    private Context mContext;
+    private static Context mContext;
 
     private class DatabaseHelper extends SQLiteOpenHelper {
         public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -54,11 +56,25 @@ public class DBHelper {
         mContext = context;
     }
 
-    public DBHelper open() throws SQLException {
+    public static String getDbName(){
+        return DATABASE_NAME;
+    }
+
+    public static String getDbDir(){
         File sd = Environment.getExternalStorageDirectory();
         String strPackage = mContext.getPackageName();
         String dbDir = sd.toString() + "/" + strPackage + "/database";
-        String dbPath = dbDir + "/" + DATABASE_NAME;
+        return dbDir;
+    }
+
+    public static String getDbPath(){
+        String dbPath = getDbDir() + "/" + DATABASE_NAME;
+        return dbPath;
+    }
+
+    public DBHelper open() throws SQLException {
+        String dbDir = getDbDir();
+        String dbPath = getDbPath();
 
         File fileDir = new File(dbDir);
         if (!fileDir.exists()) {
@@ -142,74 +158,4 @@ public class DBHelper {
         }
         return c;
     }
-
-    public void exportDB() {
-        try {
-            File data = Environment.getDataDirectory();
-            File sd = Environment.getExternalStorageDirectory();
-            String strPackage = mContext.getPackageName();
-
-            if (sd.canWrite()) {
-                String currentDBPath = data.toString() + "/" + strPackage + "/databases/" + DATABASE_NAME;
-                String backupDir = sd.toString() + "/" + strPackage;
-                String backupDBPath = "/" + strPackage + "/" + DATABASE_NAME;
-
-                File fileDir = new File(backupDir);
-                if ( !fileDir.exists() ){
-                    // 디렉토리가 존재하지 않으면 디렉토리 생성
-                    fileDir.mkdir();
-                }
-
-                File currentDB = new File(data, currentDBPath);
-                File backupDB = new File(sd, backupDBPath);
-
-                FileChannel src = new FileInputStream(currentDB).getChannel();
-                FileChannel dst = new FileOutputStream(backupDB).getChannel();
-                dst.transferFrom(src, 0, src.size());
-                src.close();
-                dst.close();
-                Toast.makeText(mContext, "데이터를 백업했어요.", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-        catch (Exception e) {
-            String errorMessage = e.getMessage();
-            Toast.makeText(mContext, "데이터 백업을 실패했어요.", Toast.LENGTH_LONG)
-                 .show();
-        }
-    }
-
-    /*
-    private void importDB() {
-        try {
-            File sd = Environment.getExternalStorageDirectory();
-            File data = Environment.getDataDirectory();
-            if (sd.canWrite()) {
-                String currentDBPath = "//data//" + "<package name>"
-                        + "//databases//" + "<database name>";
-                String backupDBPath = "<backup db filename>"; // From SD directory.
-                File backupDB = new File(data, currentDBPath);
-                File currentDB = new File(sd, backupDBPath);
-
-                FileChannel src = new FileInputStream(backupDB).getChannel();
-                FileChannel dst = new FileOutputStream(currentDB).getChannel();
-                dst.transferFrom(src, 0, src.size());
-                src.close();
-                dst.close();
-                Toast.makeText(getApplicationContext(), "Import Successful!",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        } catch (Exception e) {
-
-            Toast.makeText(getApplicationContext(), "Import Failed!", Toast.LENGTH_SHORT)
-                    .show();
-
-        }
-    }
-    */
-
-
-
-
 }

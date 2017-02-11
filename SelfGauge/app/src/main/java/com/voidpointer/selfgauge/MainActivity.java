@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper.close();
     }
 
-    private void setDatabaseToAdapterAfterAdd(){
+    public void setDatabaseToAdapterAfterAdd(){
         mAdapter.clear();
         mAdapter.notifyDataSetChanged();
 
@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
         setDatabaseToAdapterAfterAdd();
     }
 
-    private void deleteAllData(){
+    public void deleteAllData(){
         mCursor = null;
 
         mDbHelper.open();
@@ -383,11 +383,12 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(MainActivity.this, SettingActivity.class));
             return true;
-        }else if (id == R.id.action_clear) {
+        }/*else if (id == R.id.action_clear) {
             deleteAllData();
             setDatabaseToAdapter();
             mAdapter.clear();
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }
