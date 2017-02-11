@@ -36,6 +36,7 @@ public class AddUsage extends Dialog {
     EditText mEditTime;
     EditText mEditUsage;
     Button mBtnSave;
+    Button mBtnHelp;
     Calendar mCalendar;
 
     int mMode = 0;   //0: add, 1: edit
@@ -77,6 +78,7 @@ public class AddUsage extends Dialog {
         mEditTime = (EditText)findViewById(R.id.editTime);
         mEditUsage = (EditText)findViewById(R.id.editUsage);
         mBtnSave = (Button)findViewById(R.id.buttonSave);
+        mBtnHelp = (Button)findViewById(R.id.buttonHelp);
 
         mCalendar = Calendar.getInstance();
         long now = System.currentTimeMillis();
@@ -152,6 +154,12 @@ public class AddUsage extends Dialog {
                 dismiss();  // close dialog
             }
         });
+
+        mBtnHelp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ShowHowTo();
+            }
+        });
     }
 
     DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -196,7 +204,6 @@ public class AddUsage extends Dialog {
     @Override
     public void show() {
         super.show();
-        ShowHowTo();
     }
 
     public void ShowHowTo(){

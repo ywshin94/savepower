@@ -94,5 +94,19 @@
         android:layout_marginTop="6dp"
         android:layout_marginBottom="14dp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="30dp"
+        android:id="@+id/buttonHelp"
+        android:text="\?"
+        android:textSize="17dp"
+        android:background="@drawable/helpbtn"
+        android:textColor="@color/colorAccent"
+        android:layout_above="@+id/editUsage"
+        android:layout_alignEnd="@+id/editUsage"
+        android:layout_alignRight="@+id/editUsage"
+        />
 
 </RelativeLayout>
