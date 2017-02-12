@@ -66,7 +66,6 @@ public class AddUsage extends Dialog {
         this.mInfoNode = infoNode;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

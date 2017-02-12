@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingStart="24dp"
+    android:paddingLeft="24dp"
+    android:paddingEnd="24dp"
+    android:paddingRight="24dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -10,8 +14,6 @@
         android:id="@+id/textDate"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"/>
 
@@ -22,8 +24,6 @@
         android:ems="10"
         android:id="@+id/editDate"
         android:layout_weight="1"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_below="@+id/textDate"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -84,17 +84,6 @@
         android:textAlignment="center"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="저장"
-        android:id="@+id/buttonSave"
-        android:layout_below="@+id/editUsage"
-        android:layout_alignEnd="@+id/editUsage"
-        android:layout_alignRight="@+id/editUsage"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="14dp" />
-
-    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,6 +96,25 @@
         android:layout_above="@+id/editUsage"
         android:layout_alignEnd="@+id/editUsage"
         android:layout_alignRight="@+id/editUsage"
+        />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:id="@+id/buttonSave"
+        android:layout_below="@+id/editUsage"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/addsavebtn"
+        android:textColor="@color/listBack"
+        android:paddingStart="22dp"
+        android:paddingLeft="22dp"
+        android:paddingEnd="22dp"
+        android:paddingRight="22dp"
+        android:textSize="17dp"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>

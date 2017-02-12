@@ -44,9 +44,15 @@
         />
 
     <Preference
-        android:key="sendMail"
-        android:title="질문하기"
-        android:summary="개발자에게 메일을 보냅니다."
+        android:key="mailDeveloper"
+        android:title="개발자에게.."
+        android:summary="개발자에게 메일을 보냅니다.\nywshin94@gmail.com"
+        />
+
+    <Preference
+        android:key="mailDesigner"
+        android:title="디자이너에게.."
+        android:summary="디자이너에게 메일을 보냅니다.\nshinsein1004@gmail.com"
         />
 
 </PreferenceScreen>

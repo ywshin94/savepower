@@ -29,8 +29,11 @@
             android:paddingBottom="20dp"
             android:textSize="16dp"
             android:background="@color/colorPrimary"
-            android:textColor="@android:color/background_light"
-            android:textAlignment="center"/>
+            android:textColor="@color/colorAccent"
+            android:textAlignment="center"
+            />
+
+        <!-- android:textColor="@android:color/background_light" -->
 
         <Button
             style="?android:attr/buttonStyleSmall"

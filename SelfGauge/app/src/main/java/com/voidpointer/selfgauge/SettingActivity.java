@@ -148,10 +148,10 @@ public class SettingActivity extends PreferenceActivity {
             startActivity(Intent.createChooser(shareIntent, "E-Mail 보낼 앱을 선택하세요"));
         }
 
-        public void mailToMe(){
+        public void mailToMe(String mailto){
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_EMAIL,new String[] { "ywshin94@gmail.com" });
+            shareIntent.putExtra(Intent.EXTRA_EMAIL,new String[] { mailto });
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("[요금폭탄 방지기] 질문 있습니다."));
             shareIntent.putExtra(Intent.EXTRA_TEXT, "");
             startActivity(Intent.createChooser(shareIntent, "E-Mail 보낼 앱을 선택하세요"));
@@ -196,9 +196,13 @@ public class SettingActivity extends PreferenceActivity {
                 _log("deleteDB");
                 deleteDB();
             }
-            else if(mKey.equals("sendMail")){
+            else if(mKey.equals("mailDeveloper")){
                 _log("sendMail");
-                mailToMe();
+                mailToMe("ywshin94@gmail.com");
+            }
+            else if(mKey.equals("mailDesigner")){
+                _log("sendMail");
+                mailToMe("shinsein1004@gmail.com");
             }
 
             return super.onPreferenceTreeClick(preferenceScreen, preference);

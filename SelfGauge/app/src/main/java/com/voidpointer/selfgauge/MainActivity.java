@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 mMonthShift -= 1;
                 setDateRange();
                 setDatabaseToAdapterAfterAdd();
+                scroolLast();
                 mButtonNext.setVisibility(View.VISIBLE);
             }
         });
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 mMonthShift += 1;
                 setDateRange();
                 setDatabaseToAdapterAfterAdd();
+                scroolLast();
 
                 if( mMonthShift==0 ){
                     mButtonNext.setVisibility(View.INVISIBLE);
@@ -393,6 +395,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void scroolLast() {
+        // 마직막 칸으로 스크롤
+        int count = mListView.getCount();
+        mListView.setSelection(count - 1);
+    }
+
     //Dialog custom;
     public void addPowerUsage(){
         if( !getPermission() ) {
@@ -426,9 +434,7 @@ public class MainActivity extends AppCompatActivity {
                 //
                 setDatabaseToAdapterAfterAdd();
 
-                //if(getPermission()){
-                //    mDbHelper.exportDB();
-                //}
+                scroolLast();
             }
         });
 
