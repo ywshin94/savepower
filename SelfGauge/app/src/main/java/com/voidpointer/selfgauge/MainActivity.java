@@ -26,10 +26,11 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.Calendar;
 import java.util.Date;
-
-import static android.R.attr.id;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button mButtonPrev;
     Button mButtonNext;
+    FloatingActionButton mFloatBtn;
+    TextView mFloatBtnText;
 
     boolean mFirstCall = true;
 
@@ -67,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mContext = this;
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFloatBtnText = (TextView)findViewById(R.id.fabText);
+        mFloatBtn = (FloatingActionButton) findViewById(R.id.fab);
+        mFloatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addPowerUsage();
@@ -87,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 setDatabaseToAdapterAfterAdd();
                 scroolLast();
                 mButtonNext.setVisibility(View.VISIBLE);
+                mFloatBtn.setVisibility(View.INVISIBLE);
+                mFloatBtnText.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -100,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if( mMonthShift==0 ){
                     mButtonNext.setVisibility(View.INVISIBLE);
+                    mFloatBtn.setVisibility(View.VISIBLE);
+                    mFloatBtnText.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -121,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(mAdapter);
 
         //setDatabaseToAdapter();
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -132,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             mFirstCall = false;
             if( getPermission() ) {
                 setDatabaseToAdapter();
+                scroolLast();
             }
             return;
         }

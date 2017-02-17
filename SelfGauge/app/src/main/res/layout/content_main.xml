@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -75,11 +77,22 @@
             />
     </RelativeLayout>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layoutBottom"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="false"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_main_bottom">
+    </com.google.android.gms.ads.AdView>
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_above="@+id/layoutBottom"
+        android:layout_above="@+id/adView"
         android:layout_margin="0dp"
         />
 
