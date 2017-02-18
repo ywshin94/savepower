@@ -131,8 +131,9 @@ public class MainActivity extends AppCompatActivity {
         //setDatabaseToAdapter();
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("985B8F7BFD0E460305E4FDBA57B9BE09").build();
         mAdView.loadAd(adRequest);
+
     }
 
     @Override
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
             mFirstCall = false;
             if( getPermission() ) {
                 setDatabaseToAdapter();
+                mAdapter.notifyDataSetChanged();
                 scroolLast();
             }
             return;
@@ -184,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 현재 날짜,시간 받아옴
         mCalStart = Calendar.getInstance();
-        if( mCalStart.get(Calendar.DAY_OF_MONTH) < mCheckDay ) {
+        if( mCalStart.get(Calendar.DAY_OF_MONTH) <= mCheckDay ) {
             mCalStart.add(Calendar.MONTH, -1);
         }
 

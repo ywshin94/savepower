@@ -253,7 +253,7 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public int getElectricityBill(int usage) {
-        int max_count = 6;
+        int max_count = 3;
         int[] gibon = new int[6];
         double[] danwi = new double[6];
 
@@ -261,7 +261,7 @@ public class CustomAdapter extends BaseAdapter {
         if( powerType == 0 ) {
             Log.v("ywshin", "저압");
             // 저압
-            gibon[0] = 410;
+            /*gibon[0] = 410;
             gibon[1] = 910;
             gibon[2] = 1600;
             gibon[3] = 3850;
@@ -273,11 +273,19 @@ public class CustomAdapter extends BaseAdapter {
             danwi[2] = 187.9;
             danwi[3] = 280.6;
             danwi[4] = 417.7;
-            danwi[5] = 709.5;
+            danwi[5] = 709.5;*/
+
+            gibon[0] = 910;
+            gibon[1] = 1600;
+            gibon[2] = 7300;
+
+            danwi[0] = 93.3;
+            danwi[1] = 187.9;
+            danwi[2] = 280.6;
         }else{
             Log.v("ywshin", "고압");
             // 고압
-            gibon[0] = 410;
+            /*gibon[0] = 410;
             gibon[1] = 730;
             gibon[2] = 1260;
             gibon[3] = 3170;
@@ -289,11 +297,19 @@ public class CustomAdapter extends BaseAdapter {
             danwi[2] = 147.3;
             danwi[3] = 215.6;
             danwi[4] = 325.7;
-            danwi[5] = 574.6;
+            danwi[5] = 574.6;*/
+
+            gibon[0] = 730;
+            gibon[1] = 1260;
+            gibon[2] = 6060;
+
+            danwi[0] = 78.3;
+            danwi[1] = 147.3;
+            danwi[2] = 215.6;
         }
 
         int electotal = 0;
-        int count = (int)((usage-1)/100) + 1;
+        int count = (int)((usage-1)/200) + 1;
         if(count>max_count){
             count = max_count;
         }
@@ -303,9 +319,9 @@ public class CustomAdapter extends BaseAdapter {
         for(int group=0; group<count; group++) {
             int guganUsage;
             if(group==count-1){
-                guganUsage = usage - 100*(count-1);
+                guganUsage = usage - 200*(count-1);
             }else {
-                guganUsage = 100;
+                guganUsage = 200;
             }
             sayongryo+=(int)(danwi[group]*guganUsage+0.5);
         }
@@ -339,4 +355,13 @@ public class CustomAdapter extends BaseAdapter {
         return df.format(money);
     }
 
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public void notifyDataSetInvalidated() {
+        super.notifyDataSetInvalidated();
+    }
 }

@@ -3,56 +3,69 @@
     android:key="pref"
     android:title="설정1">
 
-    <ListPreference
-        android:key="checkDay"
-        android:title="검침일"
-        android:summary="%s"
-        android:entries="@array/checkDay"
-        android:entryValues="@array/checkDay_values"
-        android:defaultValue="18"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        />
+    <PreferenceCategory
+        android:title="기본설정"
+        android:key="pref_key_basic_settings">
 
-    <ListPreference
-        android:key="powerType"
-        android:title="전기 종류"
-        android:summary="%s"
-        android:entries="@array/powerType"
-        android:entryValues="@array/powerType_values"
-        android:defaultValue="0"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        />
+        <ListPreference
+            android:key="checkDay"
+            android:title="검침일"
+            android:summary="%s"
+            android:entries="@array/checkDay"
+            android:entryValues="@array/checkDay_values"
+            android:defaultValue="18"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            />
 
-    <Preference
-        android:key="exportDB"
-        android:title="데이터 내보내기"
-        android:summary="데이터(selfgauge.db) 파일을 E-Mail로 보냅니다. 폰 바꿀때 사용하세요."
-        />
+        <ListPreference
+            android:key="powerType"
+            android:title="전기 종류"
+            android:summary="%s"
+            android:entries="@array/powerType"
+            android:entryValues="@array/powerType_values"
+            android:defaultValue="0"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            />
+    </PreferenceCategory>
 
-    <Preference
-        android:key="importDB"
-        android:title="데이터 복구하기"
-        android:summary="기기의 download 폴더에서 selfgauge.db를 가져옵니다. 기존의 데이터는 삭제됩니다. 신중하게 결정하세요."
-        />
+    <PreferenceCategory
+        android:title="데이터 관리"
+        android:key="pref_key_date_settings">
+        <Preference
+            android:key="exportDB"
+            android:title="데이터 내보내기"
+            android:summary="데이터(selfgauge.db) 파일을 E-Mail로 보냅니다. 폰 바꿀때 사용하세요."
+            />
 
-    <Preference
-        android:key="deleteDB"
-        android:title="데이터 삭제"
-        android:summary="모든 데이터를 삭제합니다. 삭제하기 전에 데이터를 E-Mail로 보내두는게 좋겠습니다."
-        />
+        <Preference
+            android:key="importDB"
+            android:title="데이터 복구하기"
+            android:summary="기기의 download 폴더에서 selfgauge.db를 가져옵니다. 기존의 데이터는 삭제됩니다. 신중하게 결정하세요."
+            />
 
-    <Preference
-        android:key="mailDeveloper"
-        android:title="개발자에게.."
-        android:summary="개발자에게 메일을 보냅니다.\nywshin94@gmail.com"
-        />
+        <Preference
+            android:key="deleteDB"
+            android:title="데이터 삭제"
+            android:summary="모든 데이터를 삭제합니다. 삭제하기 전에 데이터를 E-Mail로 보내두는게 좋겠습니다."
+            />
+    </PreferenceCategory>
 
-    <Preference
-        android:key="mailDesigner"
-        android:title="디자이너에게.."
-        android:summary="디자이너에게 메일을 보냅니다.\nshinsein1004@gmail.com"
-        />
+    <PreferenceCategory
+        android:title="질문과 응원"
+        android:key="pref_key_date_settings">
+        <Preference
+            android:key="mailDeveloper"
+            android:title="개발자에게.."
+            android:summary="개발자에게 메일을 보냅니다. 질문이든 의견이든 (욕이든;;) 언제나 환영합니다.\nywshin94@gmail.com"
+            />
+
+        <Preference
+            android:key="mailDesigner"
+            android:title="디자이너에게.."
+            android:summary="아이콘을 그려준 예쁜 딸 세인이에게 감사를 전합니다. 응원 부탁합니다.\nshinsein1004@gmail.com"
+            />
+    </PreferenceCategory>
 
 </PreferenceScreen>
