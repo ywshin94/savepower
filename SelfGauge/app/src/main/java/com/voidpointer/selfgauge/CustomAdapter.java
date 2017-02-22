@@ -75,11 +75,14 @@ public class CustomAdapter extends BaseAdapter {
         return (infoNode._id == -2);
     }
 
-    public void setNormalListItem(InfoClass infoNode, View v){
+    public void setNormalListItem(InfoClass infoNode, InfoClass infoNodeBefore, View v){
         boolean menuExpand = false;
-        RelativeLayout menuLayout = (RelativeLayout)v.findViewById(R.id.group3);
-        if( menuLayout.getVisibility() == View.VISIBLE ) {
+        RelativeLayout mainLayout=(RelativeLayout)v.findViewById(R.id.group3);
+        if( infoNode.selected ){
+            mainLayout.setVisibility(View.VISIBLE);
             menuExpand = true;
+        }else{
+            mainLayout.setVisibility(View.GONE);
         }
 
         //
@@ -113,6 +116,25 @@ public class CustomAdapter extends BaseAdapter {
         text = (TextView) v.findViewById(R.id.textCharge);
         int charge = getElectricityBill(usageThisMonth);
         text.setText(String.format("%s원", getMoneyString(charge)));
+
+        //
+        text = (TextView) v.findViewById(R.id.textChargeAdd);
+        TextView text2 = (TextView) v.findViewById(R.id.textUsageAdd);
+        if( menuExpand && infoNodeBefore != null ) {
+            int usageBefore = getUsageThisMonth(infoNodeBefore.usage);
+            int chargeAmount = charge - getElectricityBill(usageBefore);
+            text.setText(String.format("(+%s)", getMoneyString(chargeAmount)));
+            text.setVisibility(View.VISIBLE);
+
+            text2.setText(String.format("(+%d)", usageThisMonth-usageBefore));
+            text2.setVisibility(View.VISIBLE);
+        }
+        else{
+            text.setText("");
+            text.setVisibility(View.INVISIBLE);
+            text2.setText("");
+            text2.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void setStartDayItem(InfoClass infoNode, View v){
@@ -153,9 +175,11 @@ public class CustomAdapter extends BaseAdapter {
 
         final int pos = position;
         final InfoClass infoNode = mInfoList.get(pos);
+        InfoClass infoNodeBefore = null;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if( isStartImsiNode(infoNode) ) {
+            infoNode.selected = false;
             convertView = inflater.inflate(R.layout.list_item_start, parent, false);
             setStartDayItem(infoNode, convertView);
 
@@ -169,6 +193,7 @@ public class CustomAdapter extends BaseAdapter {
             });
         }
         else if( isForecastImsiNode(infoNode) ) {
+            infoNode.selected = false;
             convertView = inflater.inflate(R.layout.list_item_end, parent, false);
             setForecastItem(infoNode, convertView);
         }
@@ -179,8 +204,10 @@ public class CustomAdapter extends BaseAdapter {
                 // view가 null일 경우 커스텀 레이아웃을 얻어 옴
             }
             convertView = inflater.inflate(R.layout.list_item, parent, false);
-
-            setNormalListItem(infoNode, convertView);
+            if( pos > 0 ) {
+                infoNodeBefore = mInfoList.get(pos-1);
+            }
+            setNormalListItem(infoNode, infoNodeBefore, convertView);
 
             // 삭제 버튼
             Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
@@ -211,16 +238,28 @@ public class CustomAdapter extends BaseAdapter {
                     //Calendar cal = Calendar.getInstance();
                     //cal.setTimeInMillis(mInfoList.get(pos).datetime);
                     //Toast.makeText(context, "리스트 클릭 : " + cal.toString(), Toast.LENGTH_SHORT).show();
+
                     RelativeLayout mainLayout=(RelativeLayout)v.findViewById(R.id.group3);
-                    if( mainLayout.getVisibility() == View.VISIBLE ) {
+                    /*if( mainLayout.getVisibility() == View.VISIBLE ) {
                         mainLayout.setVisibility(View.GONE);
                     }else{
                         mainLayout.setVisibility(View.VISIBLE);
-                    }
+                    }*/
+
 
                     InfoClass infoNode = mInfoList.get(pos);
-                    //setDateString( infoNode, v );
-                    setNormalListItem( infoNode, v );
+                    InfoClass infoNodeBefore = null;
+
+                    if( infoNode.selected ){
+                        infoNode.selected = false;
+                    }else{
+                        infoNode.selected = true;
+                    }
+
+                    if(pos>0){
+                        infoNodeBefore = mInfoList.get(pos-1);
+                    }
+                    setNormalListItem( infoNode, infoNodeBefore, v );
                 }
             });
 
@@ -228,10 +267,6 @@ public class CustomAdapter extends BaseAdapter {
             convertView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    // 터치 시 해당 아이템 이름 출력
-                    //Calendar cal = Calendar.getInstance();
-                    //cal.setTimeInMillis(mInfoList.get(pos).datetime);
-                    //Toast.makeText(context, "리스트 롱~클릭 : " + cal.toString(), Toast.LENGTH_SHORT).show();
                     if( mInfoList.get(pos).selected ){
                         mInfoList.get(pos).selected = false;
                     }else{
@@ -241,12 +276,6 @@ public class CustomAdapter extends BaseAdapter {
                     return true;
                 }
             });
-        }
-
-        if (infoNode.selected) {
-            convertView.setBackgroundResource(R.color.listBackSelect);
-        } else{
-            convertView.setBackgroundResource(R.color.listBack);
         }
 
         return convertView;
@@ -353,15 +382,5 @@ public class CustomAdapter extends BaseAdapter {
     public String getMoneyString(int money){
         DecimalFormat df = new DecimalFormat("#,##0");
         return df.format(money);
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-    }
-
-    @Override
-    public void notifyDataSetInvalidated() {
-        super.notifyDataSetInvalidated();
     }
 }

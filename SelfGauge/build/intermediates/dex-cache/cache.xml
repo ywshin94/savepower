@@ -106,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ec1c552af1de9d589fc9059dc2a963d818b6e38c">
+        sha1="dea47c2c4fb99238a4bd0032ed6ea3b0e4e071ae">
         <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_b495db06f03a8100b6e723dd1324d9a95fbf8405\classes.dex" />
     </item>
     <item
@@ -115,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="2ae601802150ca9e0b3c542852446c0d16eb8e3a">
+        sha1="ccd7c97ba6586188713bae7cd3fe95587ab5809b">
         <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_94fa0a24a89f98297c9a4cbba79a3514524ac799\classes.dex" />
     </item>
     <item

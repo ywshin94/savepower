@@ -32,6 +32,8 @@ import com.google.android.gms.ads.AdView;
 import java.util.Calendar;
 import java.util.Date;
 
+import static java.lang.Integer.min;
+
 public class MainActivity extends AppCompatActivity {
 
     public static Context mContext;
@@ -249,14 +251,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static String getDateTimeString(Calendar calendar){
-        return String.format("%04d.%02d.%02d - %02d:%02d:%02d:%03d",
+        return String.format("%04d.%02d.%02d - %02d:%02d:%02d",
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH)+1,
                 calendar.get(Calendar.DAY_OF_MONTH),
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
-                calendar.get(Calendar.SECOND),
-                calendar.get(Calendar.MILLISECOND));
+                calendar.get(Calendar.SECOND)/*,
+                calendar.get(Calendar.MILLISECOND)*/);
     }
 
     /**
@@ -351,10 +353,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setDatabaseToAdapterAfterAdd(){
+        int count1 = mAdapter.getCount();
+        boolean [] selected = new boolean[count1];
+        for(int i=0; i<count1; i++){
+            selected[i] = ((InfoClass)mAdapter.getItem(i)).selected;
+        }
+
+        //
         mAdapter.clear();
         mAdapter.notifyDataSetChanged();
 
         setDatabaseToAdapter();
+
+        //
+        int count2 = mAdapter.getCount();
+        int count = count1 < count2 ? count1 : count2;
+        for(int i=0; i<count; i++){
+            boolean sel = true;
+            //if(i<count1) {
+                sel = selected[i];
+            //}
+            ((InfoClass)mAdapter.getItem(i)).selected = sel;
+        }
+        //
 
         mAdapter.notifyDataSetChanged();
     }

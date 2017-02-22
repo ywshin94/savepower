@@ -35,7 +35,21 @@
             android:textSize="24sp"
             android:textColor="@color/colorAccent"
             android:textAlignment="viewEnd"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ChargeAdd"
+            android:id="@+id/textChargeAdd"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:textAlignment="viewEnd"
+            android:layout_gravity="end"
+            android:layout_toStartOf="@+id/textCharge"
+            android:layout_toLeftOf="@+id/textCharge"
+            android:layout_marginRight="5dp"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -67,6 +81,19 @@
             android:textSize="14sp"
             android:textAlignment="viewEnd"
             android:layout_gravity="end"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ChargeAdd"
+            android:id="@+id/textUsageAdd"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:textAlignment="viewEnd"
+            android:layout_gravity="end"
+            android:layout_toStartOf="@+id/textUsage"
+            android:layout_toLeftOf="@+id/textUsage"
+            android:layout_marginRight="5dp"
+            />
     </RelativeLayout>
 
     <RelativeLayout

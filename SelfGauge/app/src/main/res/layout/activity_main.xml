@@ -44,7 +44,7 @@
         android:gravity="center_vertical|center"
         /-->
 
-    <android.support.design.widget.FloatingActionButton
+    <!--android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -60,6 +60,32 @@
         android:layout_height="60dp"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="34dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:elevation="16dp"
+        android:textSize="28sp"
+        android:textStyle="normal"
+        android:text="+"
+        android:textColor="@android:color/white"
+        android:gravity="center_vertical|center"
+        /-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:src="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/fabText"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
         android:elevation="16dp"
