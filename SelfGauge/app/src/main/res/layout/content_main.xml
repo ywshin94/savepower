@@ -85,7 +85,9 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="false"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_main_bottom">
+        ads:adUnitId="@string/banner_ad_main_bottom"
+        android:visibility="gone"
+        >
     </com.google.android.gms.ads.AdView>
 
     <ListView
