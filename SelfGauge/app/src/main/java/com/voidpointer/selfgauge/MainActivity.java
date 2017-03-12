@@ -162,13 +162,17 @@ public class MainActivity extends AppCompatActivity {
         //GuideDialog dialog = new GuideDialog(mContext);
         //dialog.show();
         if(mMonthShift == 0 && mAdapter.getCount() == 0) {
-            ImageView imageView = (ImageView) findViewById(R.id.guideimage);
+            RelativeLayout imageView = (RelativeLayout) findViewById(R.id.guideimage);
             imageView.setVisibility(View.VISIBLE);
         }
         else{
-            ImageView imageView = (ImageView) findViewById(R.id.guideimage);
+            RelativeLayout imageView = (RelativeLayout) findViewById(R.id.guideimage);
             imageView.setVisibility(View.GONE);
         }
+    }
+    public void HideGuide(){
+        RelativeLayout imageView = (RelativeLayout) findViewById(R.id.guideimage);
+        imageView.setVisibility(View.GONE);
     }
 
     @Override
@@ -471,7 +475,7 @@ public class MainActivity extends AppCompatActivity {
     public void scroolLast() {
         // 마직막 칸으로 스크롤
         int count = mListView.getCount();
-        mListView.setSelection(count - 1);
+        mListView.setSelection(count-1);
     }
 
     //Dialog custom;
@@ -513,6 +517,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        HideGuide();
         addusage.mStartWithHowto = true;
         addusage.show();
     }

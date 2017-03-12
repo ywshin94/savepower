@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -38,7 +40,7 @@ import static android.os.Environment.DIRECTORY_DOWNLOADS;
  */
 public class AddUsage extends Dialog {
     Context mContextParent;
-    Context mContext;
+    static Context mContext;
 
     EditText mEditDate;
     EditText mEditTime;
@@ -164,7 +166,7 @@ public class AddUsage extends Dialog {
 
         mBtnHelp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ShowHowTo();
+                ShowGuide();
             }
         });
     }
@@ -210,13 +212,13 @@ public class AddUsage extends Dialog {
     protected void timerCall() {
         Runnable updater = new Runnable() {
             public void run() {
-                ShowHowTo();
+                ShowGuide();
             }
         };
         handler.post(updater);
     }
 
-    public void ShowHowTo(){
+    public void ShowGuide(){
         editFocusOff();
 
         mHowtoDialog = new Dialog(this.mContext);
@@ -226,6 +228,19 @@ public class AddUsage extends Dialog {
         mHowtoDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         mHowtoDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        Button btnHelp = (Button)mHowtoDialog.findViewById(R.id.buttonCheckHelp);
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog helpDlg = new Dialog(MainActivity.mContext);
+                helpDlg.setContentView(R.layout.help);
+                helpDlg.setCancelable(true);
+                helpDlg.show();
+                WebView webView = (WebView)helpDlg.findViewById(R.id.helpWebview);
+                webView.loadUrl("file:///android_asset/howtoguage/index.html");
+            }
+        });
+
         // Dialog Dismiss시 Event 받기
         mHowtoDialog.setOnShowListener(new OnShowListener() {
             @Override
@@ -234,7 +249,6 @@ public class AddUsage extends Dialog {
                 params.x = -4;
                 params.y = -80;
                 mHowtoDialog.getWindow().setAttributes(params);
-
             }
         });
 

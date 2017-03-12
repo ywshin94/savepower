@@ -13,4 +13,36 @@
         android:src="@drawable/guide2"
         android:scaleType="fitEnd"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="전기계량기를 검침해서\n여기에 입력하세요"
+        android:textAlignment="center"
+        android:layout_centerVertical="true"
+        android:background="#00000000"
+        android:textColor="#FF000000"
+        android:paddingBottom="32dp"
+        android:textSize="24sp" />
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="30dp"
+        android:id="@+id/buttonCheckHelp"
+        android:text="계량기 보는 방법"
+        android:textSize="14dp"
+        android:background="@drawable/helpbtn"
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="14dp"
+        android:paddingStart="14dp"
+        android:paddingRight="14dp"
+        android:paddingEnd="14dp"
+        android:layout_marginBottom="44dp"
+        android:layout_centerHorizontal="true"
+        android:textColorLink="@color/colorAccent"
+
+        />
 </RelativeLayout>
