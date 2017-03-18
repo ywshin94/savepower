@@ -63,15 +63,15 @@ public class CustomAdapter extends BaseAdapter {
         return i;
     }
 
-    public boolean isImsiNode( InfoClass infoNode ){
+    public static boolean isImsiNode( InfoClass infoNode ){
         return (infoNode._id < 0);
     }
 
-    public boolean isStartImsiNode( InfoClass infoNode ){
+    public static boolean isStartImsiNode( InfoClass infoNode ){
         return (infoNode._id == -1);
     }
 
-    public boolean isForecastImsiNode( InfoClass infoNode ){
+    public static boolean isForecastImsiNode( InfoClass infoNode ){
         return (infoNode._id == -2);
     }
 
@@ -147,7 +147,7 @@ public class CustomAdapter extends BaseAdapter {
 
         //
         text = (TextView) v.findViewById(R.id.textUsageTotal);
-        text.setText("지난달 검침결과를 입력해 주세요.");
+        text.setText("여기를 터치해서 지난달 검침결과를 입력해 주세요.");
     }
 
     public void setForecastItem(InfoClass infoNode, View v){

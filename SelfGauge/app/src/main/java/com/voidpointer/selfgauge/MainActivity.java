@@ -24,7 +24,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -158,12 +160,47 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public boolean IsShowGuide1(){
+        if(mMonthShift == 0 && mAdapter.getCount() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean IsShowGuide2(){
+        if(mAdapter.getCount()>1) {
+            InfoClass startNode = (InfoClass) mAdapter.getItem(0);
+            return mAdapter.isImsiNode(startNode);
+        }
+        return false;
+    }
+
     public void ShowGuide(){
         //GuideDialog dialog = new GuideDialog(mContext);
         //dialog.show();
-        if(mMonthShift == 0 && mAdapter.getCount() == 0) {
+        if(IsShowGuide1()) {
             RelativeLayout imageView = (RelativeLayout) findViewById(R.id.guideimage);
             imageView.setVisibility(View.VISIBLE);
+        }
+        else if(IsShowGuide2()){
+            /*
+            final Dialog helpDlg = new Dialog(MainActivity.mContext);
+            helpDlg.setContentView(R.layout.guidedlg);
+            helpDlg.setCancelable(true);
+            helpDlg.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            helpDlg.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            helpDlg.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    WindowManager.LayoutParams params = helpDlg.getWindow().getAttributes();
+                    params.y = -300;
+                    helpDlg.getWindow().setAttributes(params);
+                }
+            });
+
+
+            helpDlg.show();
+            */
         }
         else{
             RelativeLayout imageView = (RelativeLayout) findViewById(R.id.guideimage);
@@ -518,7 +555,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         HideGuide();
-        addusage.mStartWithHowto = true;
+        addusage.mStartWithHowto = IsShowGuide1();
         addusage.show();
     }
 

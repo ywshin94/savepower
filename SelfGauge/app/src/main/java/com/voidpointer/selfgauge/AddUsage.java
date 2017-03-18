@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
@@ -84,7 +85,6 @@ public class AddUsage extends Dialog {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.add_usage);
-        setTitle("Input Power Usage");
 
         mContext = this.getContext();
 
@@ -109,6 +109,11 @@ public class AddUsage extends Dialog {
             }
             else {
                 mMode = 0;
+            }
+
+            if( CustomAdapter.isStartImsiNode(this.mInfoNode)){
+                mEditDate.setEnabled(false);
+                mEditTime.setEnabled(false);
             }
         }
 
@@ -222,8 +227,8 @@ public class AddUsage extends Dialog {
         editFocusOff();
 
         mHowtoDialog = new Dialog(this.mContext);
+        mHowtoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mHowtoDialog.setContentView(R.layout.howto);
-        mHowtoDialog.setTitle("이렇게 입력하세요");
         mHowtoDialog.setCancelable(true);
         mHowtoDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         mHowtoDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -232,16 +237,33 @@ public class AddUsage extends Dialog {
         btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog helpDlg = new Dialog(MainActivity.mContext);
+                final Dialog helpDlg = new Dialog(MainActivity.mContext);
+                helpDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 helpDlg.setContentView(R.layout.help);
                 helpDlg.setCancelable(true);
                 helpDlg.show();
                 WebView webView = (WebView)helpDlg.findViewById(R.id.helpWebview);
                 webView.loadUrl("file:///android_asset/howtoguage/index.html");
+
+                Button btnExit = (Button)helpDlg.findViewById(R.id.buttonHelpClose);
+                btnExit.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        helpDlg.dismiss();
+                    }
+                });
+
+                helpDlg.setOnDismissListener(new Dialog.OnDismissListener(){
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        mHowtoDialog.dismiss();
+                    }
+                });
+
+
             }
         });
 
-        // Dialog Dismiss시 Event 받기
         mHowtoDialog.setOnShowListener(new OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
