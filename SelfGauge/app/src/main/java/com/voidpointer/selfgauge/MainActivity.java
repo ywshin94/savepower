@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
     boolean mFirstCall = true;
 
+    static final String mYoilString[] = {"일","화","화","수","목","금","토"};
+
     void _log(String log){
         Log.v(TAG, log);
     }
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 mFloatBtn.setVisibility(View.INVISIBLE);
                 mFloatBtnText.setVisibility(View.INVISIBLE);
 
+                LoadAd();
                 ShowGuide();
             }
         });
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     mFloatBtn.setVisibility(View.VISIBLE);
                     mFloatBtnText.setVisibility(View.VISIBLE);
 
+                    LoadAd();
                     ShowGuide();
                 }
             }
@@ -148,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void LoadAd(){
         AdView mAdView = (AdView) findViewById(R.id.adView);
-        if(mAdapter.getCount() >= 3) {
+        if(mAdapter.getCount() >= 4) {
             if(mAdView.getVisibility() != View.VISIBLE) {
                 mAdView.setVisibility(View.VISIBLE);
                 AdRequest adRequest = new AdRequest.Builder().addTestDevice("985B8F7BFD0E460305E4FDBA57B9BE09").build();
@@ -158,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             mAdView.setVisibility(View.GONE);
         }
+
     }
 
     public boolean IsShowGuide1(){
@@ -173,6 +178,24 @@ public class MainActivity extends AppCompatActivity {
             return mAdapter.isImsiNode(startNode);
         }
         return false;
+    }
+
+    public boolean IsShowGuideHowtoGuage(){
+        // 지난달 데이터 확인
+        Calendar calStart = Calendar.getInstance();
+        calStart.setTimeInMillis(mCalEnd.getTimeInMillis());
+        calStart.add(Calendar.MONTH, -6);
+
+        mDbHelper.open();
+        mCursor = mDbHelper.getRangeColumns(calStart, mCalEnd);
+        boolean res = false;
+        if(mMonthShift == 0 && mCursor.getCount()<2) {
+            res = true;
+        }
+        mCursor.close();
+        mDbHelper.close();
+
+        return res;
     }
 
     public void ShowGuide(){
@@ -314,6 +337,10 @@ public class MainActivity extends AppCompatActivity {
         return getDateString(datetime).equals(getDateString(mCalEnd));
     }
 
+    public static String getYoilString(Calendar calendar){
+        return mYoilString[calendar.get(Calendar.DAY_OF_WEEK)-1];
+    }
+
     public static String getDateString(long datetime){
         Date d = new Date(datetime);
         Calendar cal = Calendar.getInstance();
@@ -325,7 +352,15 @@ public class MainActivity extends AppCompatActivity {
         return String.format("%04d.%02d.%02d",
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH)+1,
-                calendar.get(Calendar.DAY_OF_MONTH));
+                calendar.get(Calendar.DAY_OF_MONTH),
+                getYoilString(calendar));
+    }
+
+    public static String getTimeString(Calendar calendar){
+        return String.format("%02d:%02d:%02d",
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                calendar.get(Calendar.SECOND));
     }
 
     public static String getDateTimeString(Calendar calendar){
@@ -335,10 +370,67 @@ public class MainActivity extends AppCompatActivity {
                 calendar.get(Calendar.DAY_OF_MONTH),
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
-                calendar.get(Calendar.SECOND)/*,
-                calendar.get(Calendar.MILLISECOND)*/);
+                calendar.get(Calendar.SECOND));
     }
 
+    enum FirstUsageGuessType{ _DidNotGuess, _WithCur2Value, _WithCur1Last1Value, _WithCur1Value};
+    FirstUsageGuessType mFirstUsageGuessType = FirstUsageGuessType._DidNotGuess;
+    public int guessFirstUsage(){
+        int guess_usage = 0;
+        mDbHelper.open();
+
+        int curUsageFirst = 0;
+        long curDateTimeFirst = 0;
+        mCursor = mDbHelper.getRangeColumns(mCalStart, mCalEnd);
+        if(mCursor.getCount()>=2){
+            // 1. 이번달 데이터가 2개이상 있으면 계산한다.
+            mCursor.moveToFirst();
+            curUsageFirst = mCursor.getInt(mCursor.getColumnIndex("usage"));
+            curDateTimeFirst = mCursor.getLong(mCursor.getColumnIndex("date"));
+            mCursor.moveToLast();
+            int usageLast= mCursor.getInt(mCursor.getColumnIndex("usage"));
+            long datetimeLast = mCursor.getLong(mCursor.getColumnIndex("date"));
+            float usage_datetime = (float) (usageLast-curUsageFirst) / (float) (datetimeLast-curDateTimeFirst);
+
+            guess_usage = (int)(curUsageFirst - usage_datetime*(curDateTimeFirst-mCalStart.getTimeInMillis()) + 0.5);
+            mFirstUsageGuessType = FirstUsageGuessType._WithCur2Value;
+        }
+        else if(mCursor.getCount()==1){
+            // 2. 이번달 데이터가 1개 있으면 지난 3달 데이터가 있는지 확인해 본다.
+            mCursor.moveToFirst();
+            curUsageFirst = mCursor.getInt(mCursor.getColumnIndex("usage"));
+            curDateTimeFirst = mCursor.getLong(mCursor.getColumnIndex("date"));
+
+            // 지난달 데이터 확인
+            Calendar calBeforeStart = Calendar.getInstance();
+            calBeforeStart.setTimeInMillis(mCalStart.getTimeInMillis());
+            calBeforeStart.add(Calendar.MONTH, -3);
+
+            mCursor = mDbHelper.getRangeColumns(calBeforeStart, mCalStart);
+            if(mCursor.getCount() >= 1){
+                // 2-1. 지난 3달동안 데이터가 1개 이상 있는경우
+                mCursor.moveToLast();
+                int usageLast= mCursor.getInt(mCursor.getColumnIndex("usage"));
+                long datetimeLast = mCursor.getLong(mCursor.getColumnIndex("date"));
+                float usage_datetime = (float)(curUsageFirst-usageLast) / (float)(curDateTimeFirst-datetimeLast);
+
+                guess_usage = (int)(curUsageFirst - usage_datetime*(curDateTimeFirst-mCalStart.getTimeInMillis()) + 0.5);
+                mFirstUsageGuessType = FirstUsageGuessType._WithCur1Last1Value;
+            }
+            else{
+                // 2-2. 지난 3달동안 데이터가 하나도 없다.
+                guess_usage = (int)(curUsageFirst - (float)(curDateTimeFirst-mCalStart.getTimeInMillis())/1000.0/60.0/60.0/24.0*15 + 0.5);
+                mFirstUsageGuessType = FirstUsageGuessType._WithCur1Value;
+            }
+        }
+        else{
+            mFirstUsageGuessType = FirstUsageGuessType._DidNotGuess;
+        }
+
+        mCursor.close();
+        mDbHelper.close();
+        return guess_usage;
+    }
     /**
      * DB에서 받아온 값을 ArrayList에 Add
      */
@@ -394,40 +486,65 @@ public class MainActivity extends AppCompatActivity {
             lastcheck_usage = usage;
         }
 
+        mCursor.close();
+        mDbHelper.close();
+
+        // 첫 임시 노드 지침 예측
+
+        if(!bGijoonGap){
+            startdate_usage = guessFirstUsage();
+            if(startdate_usage>0) {
+                InfoClass firstNode = (InfoClass) mAdapter.getItem(0);
+                firstNode.usage = startdate_usage;
+                mAdapter.setItem(0, firstNode);
+            }
+        }
+
         // 예상 요금
-        if( itemCount>=2 && mMonthShift == 0) {
+        //if( itemCount>=2 && mMonthShift == 0) {
+        if(startdate_usage > 0){
             int month_usage;
             String comment;
 
-            if( bGijoonGap ) {
-                int usage_shift = lastcheck_usage - startdate_usage;
-                long datetime_shift = datetime - mCalStart.getTimeInMillis();
+            int usage_shift = lastcheck_usage - startdate_usage;
+            long datetime_shift = datetime - mCalStart.getTimeInMillis();
 
-                float usage_datetime = (float) usage_shift / (float) datetime_shift;
+            float usage_datetime = (float) usage_shift / (float) datetime_shift;
 
-                long remain_datetime = mCalEnd.getTimeInMillis() - datetime;
-                int remain_days = (int) (remain_datetime / 1000. / 60. / 60. / 24.);
-                int remain_usage = (int) (remain_datetime * usage_datetime);
-                month_usage = lastcheck_usage + remain_usage;
+            long remain_datetime = mCalEnd.getTimeInMillis() - datetime;
+            int remain_days = (int) (remain_datetime / 1000. / 60. / 60. / 24.);
+            int remain_usage = (int) (remain_datetime * usage_datetime);
+            month_usage = lastcheck_usage + remain_usage;
 
-                _log("lastcheck_usage : " + lastcheck_usage);
-                _log("startdate_usage : " + startdate_usage);
-                _log("usage_shift : " + usage_shift);
+            _log("lastcheck_usage : " + lastcheck_usage);
+            _log("startdate_usage : " + startdate_usage);
+            _log("usage_shift : " + usage_shift);
 
-                comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용했습니다.\n검침일까지 %d일 남았고, %.1f(kWh) 정도 더 사용할것 같아요.",
+            if(bGijoonGap) {
+                comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용했습니다.\n검침일까지 %d일 남았고, %.1f(kWh) 정도 더 사용할 것 같아요.",
                         usage_datetime * 24 * 60 * 60 * 1000, remain_days, remain_datetime * usage_datetime);
             }
             else{
-                month_usage = 0;
-                comment = "지난달 검침결과를 입력해야 예상전기요금을 확인할 수 있습니다.";
+                if(mFirstUsageGuessType == FirstUsageGuessType._DidNotGuess) {
+                    comment = "";
+                }
+                else {
+                    if (mFirstUsageGuessType == FirstUsageGuessType._WithCur1Value) {
+                        comment = String.format("하루에 %.1f(kWh) 정도 사용한 것으로 가정합니다.",
+                                usage_datetime * 24 * 60 * 60 * 1000);
+                    } else {
+                        comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용한 것 같습니다.",
+                                usage_datetime * 24 * 60 * 60 * 1000);
+                    }
+                    comment = String.format("%s\n검침일까지 %d일 남았고, %.1f(kWh) 정도 더 사용할 것 같아요.",
+                            comment, remain_days, remain_datetime * usage_datetime);
+                    comment = String.format("%s\n지난달 검침결과를 입력하면 더욱 정확한 예상전기요금을 확인하실 수 있습니다.", comment);
+                }
             }
 
             mInfoClass = new InfoClass(-2, mCalEnd.getTimeInMillis(), type, month_usage, comment);
             mAdapter.add(mInfoClass);
         }
-
-        mCursor.close();
-        mDbHelper.close();
     }
 
     public void setDatabaseToAdapterAfterAdd(){
@@ -555,7 +672,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         HideGuide();
-        addusage.mStartWithHowto = IsShowGuide1();
+        addusage.mStartWithHowto = IsShowGuideHowtoGuage();
+
         addusage.show();
     }
 

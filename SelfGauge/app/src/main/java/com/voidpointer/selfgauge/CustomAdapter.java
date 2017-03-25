@@ -42,9 +42,12 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public int getUsageThisMonth(int usage){
-        InfoClass first = mInfoList.get(0);
-        int firstUsage = first.usage;
-        int res = usage - first.usage;
+        int firstUsage;
+        InfoClass first;
+        first = mInfoList.get(0);
+        firstUsage = first.usage;
+
+        int res = usage - firstUsage;
         return res;
     }
 
@@ -56,6 +59,11 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public Object getItem(int i) {
         return mInfoList.get(i);
+    }
+
+
+    public void setItem( int i, InfoClass node){
+        mInfoList.set(i, node);
     }
 
     @Override
@@ -91,9 +99,9 @@ public class CustomAdapter extends BaseAdapter {
         TextView text = (TextView) v.findViewById(R.id.textDate);
         String strDate;
         if (menuExpand) {
-            strDate = MainActivity.getDateTimeString(cal);
+            strDate = String.format("%s (%s) - %s", MainActivity.getDateString(cal), MainActivity.getYoilString(cal), MainActivity.getTimeString(cal));
         } else {
-            strDate = MainActivity.getDateString(cal);
+            strDate = String.format("%s (%s)", MainActivity.getDateString(cal), MainActivity.getYoilString(cal));
         }
         text.setText(strDate);
 
@@ -147,7 +155,7 @@ public class CustomAdapter extends BaseAdapter {
 
         //
         text = (TextView) v.findViewById(R.id.textUsageTotal);
-        text.setText("여기를 터치해서 지난달 검침결과를 입력해 주세요.");
+        text.setText(String.format("여기를 터치해서 지난달 검침결과를 입력해 주세요.\n일단은 %d 정도로 예측해 봅니다.", infoNode.usage));
     }
 
     public void setForecastItem(InfoClass infoNode, View v){
