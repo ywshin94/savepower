@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         _log("MainActivity... onCreate");
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -147,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(mAdapter);
 
         //setDatabaseToAdapter();
-
     }
 
     public void LoadAd(){
@@ -356,6 +356,12 @@ public class MainActivity extends AppCompatActivity {
                 getYoilString(calendar));
     }
 
+    public static String getDateStringShort(Calendar calendar){
+        return String.format("%d.%02d",
+                calendar.get(Calendar.MONTH)+1,
+                calendar.get(Calendar.DAY_OF_MONTH));
+    }
+
     public static String getTimeString(Calendar calendar){
         return String.format("%02d:%02d:%02d",
                 calendar.get(Calendar.HOUR_OF_DAY),
@@ -394,6 +400,10 @@ public class MainActivity extends AppCompatActivity {
 
             guess_usage = (int)(curUsageFirst - usage_datetime*(curDateTimeFirst-mCalStart.getTimeInMillis()) + 0.5);
             mFirstUsageGuessType = FirstUsageGuessType._WithCur2Value;
+
+            //if(guess_usage>curUsageFirst){
+            //    mFirstUsageGuessType = FirstUsageGuessType._DidNotGuess;
+            //}
         }
         else if(mCursor.getCount()==1){
             // 2. 이번달 데이터가 1개 있으면 지난 3달 데이터가 있는지 확인해 본다.
@@ -502,7 +512,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 예상 요금
         //if( itemCount>=2 && mMonthShift == 0) {
-        if(startdate_usage > 0){
+        if(startdate_usage > 0 ){
             int month_usage;
             String comment;
 

@@ -175,6 +175,54 @@ public class CustomAdapter extends BaseAdapter {
         else{
             text.setText(String.format("예상전기요금 : ______원"));
         }
+
+        RelativeLayout container = (RelativeLayout)v.findViewById(R.id.forecastgraph);
+        ForecastGraph graph = new ForecastGraph(v.getContext());
+        setForecaseGraph(graph);
+        container.addView(graph);
+    }
+
+    public int getDayDiff( long daymillis ) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTimeInMillis(MainActivity.mCalStart.getTimeInMillis());
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTimeInMillis(daymillis);
+        int count = 0;
+        while (!cal2.after(cal1)){
+            count++;
+            cal2.add(Calendar.DATE, 1);
+        }
+        long diff = daymillis - MainActivity.mCalStart.getTimeInMillis();
+        int days = (int)(diff / 1000 / 60/ 60 / 24);
+        return days;
+    }
+
+
+    public void setForecaseGraph( ForecastGraph graph ){
+        //int daycount = getDayIndex(MainActivity.mCalEnd.getTimeInMillis());
+        //graph.setDataCount(daycount);
+
+        long startDateTime = MainActivity.mCalStart.getTimeInMillis();
+        long msecTotal = MainActivity.mCalEnd.getTimeInMillis()-startDateTime;
+        graph.setMaxXValue(msecTotal);
+
+        int maxy = 0;
+        int count = getCount();
+        for(int i=0; i<count; i++) {
+            InfoClass node = (InfoClass)getItem(i);
+            long datetime = node.datetime - startDateTime;
+            int charge = getElectricityBill(getUsageThisMonth(node.usage));
+            graph.setData(datetime, charge);
+
+            if( charge > maxy ){
+                maxy = charge;
+            }
+        }
+
+        graph.setMaxYValue(maxy);
+
+        graph.setNoojin(getElectricityBill(200), getElectricityBill(400));
     }
 
     @Override
@@ -387,7 +435,7 @@ public class CustomAdapter extends BaseAdapter {
         return yogeum;
     }
 
-    public String getMoneyString(int money){
+    public static String getMoneyString(int money){
         DecimalFormat df = new DecimalFormat("#,##0");
         return df.format(money);
     }
