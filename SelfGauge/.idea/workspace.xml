@@ -7,8 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="211fbbec-537f-42ee-b163-fe633cf50f3e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-06-10-08-33-36-456.rawproto" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
@@ -16,12 +14,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/ForecastGraph.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/ForecastGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" />
     </list>
     <ignored path="SelfGauge.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,32 +79,55 @@
       <file leaf-file-name="AddUsage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+            <state relative-caret-position="322">
+              <caret line="167" column="59" selection-start-line="167" selection-start-column="42" selection-end-line="167" selection-end-column="59" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#5759#5760#0" expanded="false" />
-                <element signature="e#5802#5803#0" expanded="false" />
-                <element signature="e#6778#6779#0" expanded="false" />
-                <element signature="e#6821#6822#0" expanded="false" />
-                <element signature="e#7024#7025#0" expanded="false" />
-                <element signature="e#7067#7068#0" expanded="false" />
-                <element signature="e#8454#8455#0" expanded="false" />
-                <element signature="e#8519#8520#0" expanded="false" />
-                <element signature="e#8715#8716#0" expanded="false" />
-                <element signature="e#8785#8786#0" expanded="false" />
-                <element signature="e#9409#9410#0" expanded="false" />
-                <element signature="e#9454#9455#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3689#4409#0" expanded="true" />
+                <element signature="e#4408#4409#0" expanded="true" />
+                <element signature="e#4450#5140#0" expanded="true" />
+                <element signature="e#5139#5140#0" expanded="true" />
+                <element signature="e#5180#5910#0" expanded="true" />
+                <element signature="e#5909#5910#0" expanded="true" />
+                <element signature="e#5950#6073#0" expanded="true" />
+                <element signature="e#6072#6073#0" expanded="true" />
+                <element signature="e#7946#9092#0" expanded="true" />
+                <element signature="e#8608#8798#0" expanded="true" />
+                <element signature="e#8797#8798#0" expanded="true" />
+                <element signature="e#8847#9064#0" expanded="true" />
+                <element signature="e#9063#9064#0" expanded="true" />
+                <element signature="e#9091#9092#0" expanded="true" />
+                <element signature="e#9135#9481#0" expanded="true" />
+                <element signature="e#9480#9481#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="194" column="17" selection-start-line="194" selection-start-column="14" selection-end-line="194" selection-end-column="17" />
+            <state relative-caret-position="262">
+              <caret line="749" column="0" selection-start-line="749" selection-start-column="0" selection-end-line="749" selection-end-column="0" />
+              <folding>
+                <element signature="e#2600#2752#0" expanded="true" />
+                <element signature="e#2751#2752#0" expanded="true" />
+                <element signature="e#22457#23877#0" expanded="true" />
+                <element signature="e#23876#23877#0" expanded="true" />
+                <element signature="e#24173#25102#0" expanded="true" />
+                <element signature="e#25101#25102#0" expanded="true" />
+                <element signature="e#25253#25882#0" expanded="true" />
+                <element signature="e#25881#25882#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -337,11 +356,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForecastGraph.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ForecastGraph.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/ForecastGraph.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="278">
-              <caret line="52" column="42" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+              <caret line="201" column="30" selection-start-line="201" selection-start-column="30" selection-end-line="201" selection-end-column="30" />
               <folding>
                 <element signature="e#6346#6347#0" expanded="true" />
                 <element signature="e#6401#6402#0" expanded="true" />
@@ -2090,10 +2109,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/CustomAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/ForecastGraph.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2553,6 +2574,14 @@
       <option name="presentableId" value="Default" />
       <updated>1492820717516</updated>
     </task>
+    <task id="LOCAL-00001" summary="그래프 그리기 완성">
+      <created>1497059285653</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1497059285653</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2573,7 +2602,8 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16780822" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16780822" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2585,7 +2615,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2604,6 +2633,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="그래프 그리기 완성" />
+    <option name="LAST_COMMIT_MESSAGE" value="그래프 그리기 완성" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -2621,13 +2654,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java</url>
-          <line>448</line>
+          <line>447</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java</url>
-          <line>504</line>
+          <line>503</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
@@ -2681,19 +2714,23 @@
         <state relative-caret-position="656">
           <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5759#5760#0" expanded="false" />
-            <element signature="e#5802#5803#0" expanded="false" />
-            <element signature="e#6778#6779#0" expanded="false" />
-            <element signature="e#6821#6822#0" expanded="false" />
-            <element signature="e#7024#7025#0" expanded="false" />
-            <element signature="e#7067#7068#0" expanded="false" />
-            <element signature="e#8454#8455#0" expanded="false" />
-            <element signature="e#8519#8520#0" expanded="false" />
-            <element signature="e#8715#8716#0" expanded="false" />
-            <element signature="e#8785#8786#0" expanded="false" />
-            <element signature="e#9409#9410#0" expanded="false" />
-            <element signature="e#9454#9455#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3689#4409#0" expanded="true" />
+            <element signature="e#4408#4409#0" expanded="true" />
+            <element signature="e#4450#5140#0" expanded="true" />
+            <element signature="e#5139#5140#0" expanded="true" />
+            <element signature="e#5180#5910#0" expanded="true" />
+            <element signature="e#5909#5910#0" expanded="true" />
+            <element signature="e#5950#6073#0" expanded="true" />
+            <element signature="e#6072#6073#0" expanded="true" />
+            <element signature="e#7946#9092#0" expanded="true" />
+            <element signature="e#8608#8798#0" expanded="true" />
+            <element signature="e#8797#8798#0" expanded="true" />
+            <element signature="e#8847#9064#0" expanded="true" />
+            <element signature="e#9063#9064#0" expanded="true" />
+            <element signature="e#9091#9092#0" expanded="true" />
+            <element signature="e#9135#9481#0" expanded="true" />
+            <element signature="e#9480#9481#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2702,7 +2739,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#2600#2752#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#22457#23877#0" expanded="true" />
+            <element signature="e#23876#23877#0" expanded="true" />
+            <element signature="e#24173#25102#0" expanded="true" />
+            <element signature="e#25101#25102#0" expanded="true" />
+            <element signature="e#25253#25882#0" expanded="true" />
+            <element signature="e#25881#25882#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2994,7 +3040,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4672">
           <caret line="292" column="46" selection-start-line="290" selection-start-column="8" selection-end-line="292" selection-end-column="46" />
-          <folding />
+          <folding>
+            <element signature="e#2600#2752#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#22457#23877#0" expanded="true" />
+            <element signature="e#23876#23877#0" expanded="true" />
+            <element signature="e#24173#25102#0" expanded="true" />
+            <element signature="e#25101#25102#0" expanded="true" />
+            <element signature="e#25253#25882#0" expanded="true" />
+            <element signature="e#25881#25882#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3068,7 +3123,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4672">
           <caret line="292" column="46" selection-start-line="290" selection-start-column="8" selection-end-line="292" selection-end-column="46" />
-          <folding />
+          <folding>
+            <element signature="e#2600#2752#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#22457#23877#0" expanded="true" />
+            <element signature="e#23876#23877#0" expanded="true" />
+            <element signature="e#24173#25102#0" expanded="true" />
+            <element signature="e#25101#25102#0" expanded="true" />
+            <element signature="e#25253#25882#0" expanded="true" />
+            <element signature="e#25881#25882#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3187,35 +3251,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5759#5760#0" expanded="false" />
-            <element signature="e#5802#5803#0" expanded="false" />
-            <element signature="e#6778#6779#0" expanded="false" />
-            <element signature="e#6821#6822#0" expanded="false" />
-            <element signature="e#7024#7025#0" expanded="false" />
-            <element signature="e#7067#7068#0" expanded="false" />
-            <element signature="e#8454#8455#0" expanded="false" />
-            <element signature="e#8519#8520#0" expanded="false" />
-            <element signature="e#8715#8716#0" expanded="false" />
-            <element signature="e#8785#8786#0" expanded="false" />
-            <element signature="e#9409#9410#0" expanded="false" />
-            <element signature="e#9454#9455#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3479,14 +3514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="194" column="17" selection-start-line="194" selection-start-column="14" selection-end-line="194" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -3498,10 +3525,61 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/ForecastGraph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
-          <caret line="52" column="42" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+          <caret line="201" column="30" selection-start-line="201" selection-start-column="30" selection-end-line="201" selection-end-column="30" />
           <folding>
             <element signature="e#6346#6347#0" expanded="true" />
             <element signature="e#6401#6402#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/AddUsage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="167" column="59" selection-start-line="167" selection-start-column="42" selection-end-line="167" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3689#4409#0" expanded="true" />
+            <element signature="e#4408#4409#0" expanded="true" />
+            <element signature="e#4450#5140#0" expanded="true" />
+            <element signature="e#5139#5140#0" expanded="true" />
+            <element signature="e#5180#5910#0" expanded="true" />
+            <element signature="e#5909#5910#0" expanded="true" />
+            <element signature="e#5950#6073#0" expanded="true" />
+            <element signature="e#6072#6073#0" expanded="true" />
+            <element signature="e#7946#9092#0" expanded="true" />
+            <element signature="e#8608#8798#0" expanded="true" />
+            <element signature="e#8797#8798#0" expanded="true" />
+            <element signature="e#8847#9064#0" expanded="true" />
+            <element signature="e#9063#9064#0" expanded="true" />
+            <element signature="e#9091#9092#0" expanded="true" />
+            <element signature="e#9135#9481#0" expanded="true" />
+            <element signature="e#9480#9481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/voidpointer/selfgauge/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="749" column="0" selection-start-line="749" selection-start-column="0" selection-end-line="749" selection-end-column="0" />
+          <folding>
+            <element signature="e#2600#2752#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#22457#23877#0" expanded="true" />
+            <element signature="e#23876#23877#0" expanded="true" />
+            <element signature="e#24173#25102#0" expanded="true" />
+            <element signature="e#25101#25102#0" expanded="true" />
+            <element signature="e#25253#25882#0" expanded="true" />
+            <element signature="e#25881#25882#0" expanded="true" />
           </folding>
         </state>
       </provider>

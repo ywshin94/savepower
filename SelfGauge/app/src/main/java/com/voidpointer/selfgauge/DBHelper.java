@@ -127,6 +127,16 @@ public class DBHelper {
     }
 
     // Select All
+    public int getLastUsage(){
+        Cursor c = mDB.query(Tables.Usage._TABLENAME, null, null, null, null, null, "date desc");
+        if(c.getCount()==0){
+            return 0;
+        }
+        c.moveToFirst();
+        return c.getInt(c.getColumnIndex("usage"));
+    }
+
+    // Select All
     public Cursor getAllColumns(){
         return mDB.query(Tables.Usage._TABLENAME, null, null, null, null, null, "date asc");
     }

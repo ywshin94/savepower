@@ -221,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-
             helpDlg.show();
             */
         }
@@ -650,8 +649,14 @@ public class MainActivity extends AppCompatActivity {
 
         AddUsage addusage = new AddUsage(this, new AddUsage.IAddUsageEventListener() {
             @Override
-            public void customDialogEvent(Calendar calendar, int usage) {
+            public int customDialogEvent(Calendar calendar, int usage) {
                 mDbHelper.open();
+
+                int lastUsage = mDbHelper.getLastUsage();
+                if(usage<=lastUsage){
+                    mDbHelper.close();
+                    return 0;
+                }
 
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);
@@ -678,6 +683,7 @@ public class MainActivity extends AppCompatActivity {
                 scroolLast();
                 LoadAd();
                 ShowGuide();
+                return 1;
             }
         });
 
@@ -694,8 +700,14 @@ public class MainActivity extends AppCompatActivity {
 
         AddUsage addusage = new AddUsage(this, infoNode, new AddUsage.IAddUsageEventListener() {
             @Override
-            public void customDialogEvent(Calendar calendar, int usage) {
+            public int customDialogEvent(Calendar calendar, int usage) {
                 mDbHelper.open();
+
+                int lastUsage = mDbHelper.getLastUsage();
+                if(usage<=lastUsage){
+                    mDbHelper.close();
+                    return 0;
+                }
 
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);
@@ -710,6 +722,8 @@ public class MainActivity extends AppCompatActivity {
                 //
                 setDatabaseToAdapterAfterAdd();
 
+                return 1;
+
                 //
                 //if(getPermission()){
                 //    mDbHelper.exportDB();
@@ -723,7 +737,7 @@ public class MainActivity extends AppCompatActivity {
     public void editPowerUsage(final InfoClass infoNode){
         AddUsage addusage = new AddUsage(this, infoNode, new AddUsage.IAddUsageEventListener() {
             @Override
-            public void customDialogEvent(Calendar calendar, int usage) {
+            public int customDialogEvent(Calendar calendar, int usage) {
                 mDbHelper.open();
 
                 long datetime = calendar.getTimeInMillis();
@@ -733,6 +747,8 @@ public class MainActivity extends AppCompatActivity {
                 mDbHelper.close();
                 //
                 setDatabaseToAdapterAfterAdd();
+
+                return 1;
 
                 //
                 //if(getPermission()){

@@ -35,6 +35,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by SHIN on 2016-08-16.
@@ -57,7 +58,7 @@ public class AddUsage extends Dialog {
     Dialog mHowtoDialog = null;
 
     public interface IAddUsageEventListener {
-        public void customDialogEvent(Calendar calendar, int usage);
+        public int customDialogEvent(Calendar calendar, int usage);
     }
     private IAddUsageEventListener onEventListener;
 
@@ -156,16 +157,22 @@ public class AddUsage extends Dialog {
 
         mBtnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if( mEditUsage.getText().toString().isEmpty() ) {
+                String text = mEditUsage.getText().toString();
+                if( text.isEmpty() ) {
                     return;
                 }
 
-                int usage = Integer.parseInt(mEditUsage.getText().toString());
-                Log.v("ywshin", "usage :" + usage);
-                onEventListener.customDialogEvent(mCalendar, usage);  // call callback function
+                int usage = Integer.parseInt(text);
 
-                editFocusOff();
-                dismiss();  // close dialog
+                Log.v("ywshin", "usage :" + usage);
+                int res = onEventListener.customDialogEvent(mCalendar, usage);  // call callback function
+                if(res==1) {
+                    editFocusOff();
+                    dismiss();  // close dialog
+                }
+                else {
+                    Toast.makeText(mContextParent, "이전 지침보다 큰값을 입력해야 합니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
