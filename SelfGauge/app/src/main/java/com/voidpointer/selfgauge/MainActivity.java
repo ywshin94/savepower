@@ -652,11 +652,11 @@ public class MainActivity extends AppCompatActivity {
             public int customDialogEvent(Calendar calendar, int usage) {
                 mDbHelper.open();
 
-                int lastUsage = mDbHelper.getLastUsage();
-                if(usage<=lastUsage){
-                    mDbHelper.close();
-                    return 0;
-                }
+                //int lastUsage = mDbHelper.getLastUsage();
+                //if(usage<=lastUsage){
+                //    mDbHelper.close();
+                //    return 0;
+                //}
 
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);
@@ -703,11 +703,11 @@ public class MainActivity extends AppCompatActivity {
             public int customDialogEvent(Calendar calendar, int usage) {
                 mDbHelper.open();
 
-                int lastUsage = mDbHelper.getLastUsage();
-                if(usage<=lastUsage){
-                    mDbHelper.close();
-                    return 0;
-                }
+                //int lastUsage = mDbHelper.getLastUsage();
+                //if(usage<=lastUsage){
+                //   mDbHelper.close();
+                //    return 0;
+                //}
 
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);

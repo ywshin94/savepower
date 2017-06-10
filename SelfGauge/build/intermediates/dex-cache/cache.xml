@@ -101,6 +101,15 @@
         <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\pre-dexed\release\support-annotations-25.1.0_92da9e9b1f783e99a69736d304d250ee580f4483.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="382668b258831a79ba975cc7687c6b152402981a">
+        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b495db06f03a8100b6e723dd1324d9a95fbf8405\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="C:\Users\ywshin\.android\build-cache\973990b62d873672eba34ce4161dea591801611c\output\jars\classes.jar"
         jumboMode="false"
@@ -108,15 +117,6 @@
         revision="25.0.2"
         sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
         <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\pre-dexed\release\classes_9a01868282f043f15e0aa6455a44b8a5adcf4245.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8853adb7e291053d19bb03765b3de0437323016e">
-        <dex dex="C:\Users\ywshin\_project\AndroidstudioProjects\savepower\SelfGauge\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_b495db06f03a8100b6e723dd1324d9a95fbf8405\classes.dex" />
     </item>
     <item
         is-multidex="false"
