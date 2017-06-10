@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.View;
 import android.webkit.DateSorter;
@@ -29,9 +30,11 @@ public class ForecastGraph extends View {
     class DataSet{
         long mDateTime;
         int mCharge;
-        public DataSet(long datetime, int charge){
+        int mUsage;
+        public DataSet(long datetime, int charge, int usage){
             mDateTime = datetime;
             mCharge = charge;
+            mUsage = usage;
         }
     }
 
@@ -40,7 +43,7 @@ public class ForecastGraph extends View {
 
     private int mFontSize = getPx(12);
     private int mTextColor = Color.argb(255, 100, 100, 100);
-    private int mBackColor= Color.argb(20, 220, 220, 220);
+    private int mBackColor= Color.argb(50, 220, 220, 220);
     private int mAxisColor = Color.argb(255, 100, 100, 100);
     private int mGridColor = Color.argb(255, 200, 200, 200);
 
@@ -71,8 +74,8 @@ public class ForecastGraph extends View {
         mNoojinText[1] = "누진2구간(400kWh)";
     }
 
-    public void setData( long datetime, int charge ){
-        DataSet data = new DataSet(datetime, charge);
+    public void setData( long datetime, int charge, int usage ){
+        DataSet data = new DataSet(datetime, charge, usage);
         mValueList.add(data);
     }
 
@@ -154,6 +157,26 @@ public class ForecastGraph extends View {
         mCanvas.drawText(value, getWidth() - mPaddingRight - width, getYPx(money) - 10, mPaint);
     }
 
+    private void drawForecastString( int money, int usage ){
+        String value = String.format("예상 : %s원 (%dkWh)", CustomAdapter.getMoneyString(money), usage);
+        float width = mPaint.measureText(value, 0, value.length());
+        //int x = (int)(getWidth() - mPaddingRight - width);
+        int x =  (int)(getWidth()/2.5);
+        int y = getYPx(money);
+
+        int colorAccent = ContextCompat.getColor(getContext(), R.color.colorAccent);
+        setDotLine(colorAccent, 1);
+        drawDotLine(x, y, getWidth()-mPaddingRight, y);
+
+
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(colorAccent);
+        //mCanvas.drawRect(x,y,x+width,y-getPx(12), mPaint);
+
+        //mPaint.setColor(ContextCompat.getColor(getContext(), R.color.listBack) );
+        mCanvas.drawText(value, x, y-10, mPaint);
+    }
+
     private int getDataSize(){
         return mValueList.size();
     }
@@ -203,12 +226,8 @@ public class ForecastGraph extends View {
             y2 = getYPx(getDataSet(i+1).mCharge);
 
             if( i==getDataSize()-2 ){
-                setDotLine(R.color.colorAccent, 1);
-                drawDotLine(mPaddingLeft + getWidth()/3, y2, x2, y2);
-                mCanvas.drawText(String.format("%d", getDataSet(i).), mPaddingLeft + getWidth()/3, y2, mPaint);
-                // DataSet 에 사용량도 추가해서 여기서 표시할 수 있다.
-
-                setDotLine(R.color.colorAccent, 4);
+                int colorAccent = ContextCompat.getColor(getContext(), R.color.colorAccent);
+                setDotLine(colorAccent, 4);
                 drawDotLine(x1, y1, x2, y2);
             }
             else {
@@ -222,12 +241,13 @@ public class ForecastGraph extends View {
             int y = getYPx(getDataSet(i).mCharge);
 
             if( i==getDataSize()-1 ){
-                setSolidLine(R.color.colorAccent, 4);
+                int colorAccent = ContextCompat.getColor(getContext(), R.color.colorAccent);
+                setSolidLine(colorAccent, 4);
             }
             mCanvas.drawCircle(x, y, 8, mPaint);
 
             if(i==getDataSize()-1){
-                drawMoneyString(getDataSet(i).mCharge);
+                drawForecastString(getDataSet(i).mCharge, getDataSet(i).mUsage);
             }
         }
     }

@@ -212,8 +212,9 @@ public class CustomAdapter extends BaseAdapter {
         for(int i=0; i<count; i++) {
             InfoClass node = (InfoClass)getItem(i);
             long datetime = node.datetime - startDateTime;
-            int charge = getElectricityBill(getUsageThisMonth(node.usage));
-            graph.setData(datetime, charge);
+            int usage = getUsageThisMonth(node.usage);
+            int charge = getElectricityBill(usage);
+            graph.setData(datetime, charge, usage);
 
             if( charge > maxy ){
                 maxy = charge;
