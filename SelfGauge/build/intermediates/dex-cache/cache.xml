@@ -2,13 +2,49 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/ba5b184a045ecc5a65d065daa89b2cea918da529/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_8398bf2ca09fae823df922a6d1e41093579b5387/classes.dex" />
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_6b1dfe226aac2fcae182123997a7f13bb9558d3b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/837f51c57c1f524033fbb40ad772bac54b803d72/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_337bf09081b131e609803f743b314c2625f3fe01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/a276f3cb04ebac48458fc5cea6ffb3345c53d75c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_90c06bb0144b25bdc2f4a8f97b947332f88772e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/23e48d758974a4ba1335e33885176cf7248142db/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_a94849f67964b7a3e336e618dcc43595989828b7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/c345aa69673835c26399fe0ab4b12ebc6a017c0e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_523e5aaaf0ef7e21bc789e09ac14c23a969f4f41.jar" />
     </item>
     <item
         is-multidex="true"
@@ -18,6 +54,96 @@
         revision="25.0.2"
         sha1="bc29b55ca8a4b1c88a2909d32884a9b48c07ce0e">
         <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e63361c68bc3f1efe469863dbbabd849d997e8f0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_8398bf2ca09fae823df922a6d1e41093579b5387/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/766d9f4c2c9a40dd95143c267c1b6b61eb7c6ad4/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_bfbf248941746befe113a783a2913225a381fa99.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/f7182aba16a322cd83f068a83359cefe1f59ccc4/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_cbc7621b4aeb9ce356fcfe1c1170d2f4e62aa7e4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/ef1d65d01c76e6a178a9c4293c247089ebeb1453/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_f557bb4bb75de7211227e5e6d2d72eb402f27a86.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/c91171c3bbf8530c2294c6bf8cb4c30927956269/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_b5c59444ab8a42aff3bd2795df2855e0e9af7112.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/c59200480840b3a9526f8e3c9900caee3df6ea5c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_0186cd1ac09a702a478edbadfcda648fe8682eb6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/cfbb48d8e9e842a392642257b353ff295c29ce05/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_e65d3c5a9a70a0992486035126b8acd6dbb84a1e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/support-annotations-25.1.0_7a748fbf1c1b8bb64355bdd51bebbf24573164ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/d7cc7ab24d5e0389cc58f3c54b70996fe51d3f39/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_f70072642a2a8bc91c085f000e81a2c228aebe31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ywshin/.android/build-cache/55ce1a822792d726e0ce7408af78072ac74943b0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_cf04ad1255849063151547d934e20b0763640c0e.jar" />
     </item>
 
 </items>

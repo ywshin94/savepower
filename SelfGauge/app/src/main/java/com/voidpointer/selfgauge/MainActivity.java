@@ -780,7 +780,7 @@ public class MainActivity extends AppCompatActivity {
 
                     AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                     dialog.setTitle("권한 좀..")
-                            .setMessage("요금폭탄 방지기를 사용하기 위해서는 단말기의 외부 메모리에 접근할 수 있는 권한이 꼭 필요합니다. 계속 하시겠습니까?")
+                            .setMessage("전기요금 폭탄 방지기를 사용하기 위해서는 단말기의 외부 메모리에 접근할 수 있는 권한이 꼭 필요합니다. 계속 하시겠습니까?")
                             .setPositiveButton("네", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

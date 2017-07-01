@@ -142,7 +142,7 @@ public class SettingActivity extends PreferenceActivity {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("*/*");
             //    shareIntent.putExtra(Intent.EXTRA_EMAIL,new String[] { "" });
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("요금폭탄 방지기 데이터 백업"));
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("전기요금 폭탄 방지기 데이터 백업"));
             shareIntent.putExtra(Intent.EXTRA_TEXT, "");
             shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
             startActivity(Intent.createChooser(shareIntent, "E-Mail 보낼 앱을 선택하세요"));
@@ -152,7 +152,7 @@ public class SettingActivity extends PreferenceActivity {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_EMAIL,new String[] { mailto });
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("[요금폭탄 방지기] 질문 있습니다."));
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("[전기요금 폭탄 방지기] 질문 있습니다."));
             shareIntent.putExtra(Intent.EXTRA_TEXT, "");
             startActivity(Intent.createChooser(shareIntent, "E-Mail 보낼 앱을 선택하세요"));
         }
