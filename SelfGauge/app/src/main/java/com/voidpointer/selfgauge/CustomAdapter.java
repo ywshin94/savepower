@@ -400,6 +400,11 @@ public class CustomAdapter extends BaseAdapter {
             count = max_count;
         }
 
+        if(count<1) {
+            // crash 나는거 막기 위해서..
+            return 0;
+        }
+
         int bokjihalin = 0;
         int sayongryo = 0;
         for(int group=0; group<count; group++) {
