@@ -38,6 +38,15 @@
         <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_a94849f67964b7a3e336e618dcc43595989828b7.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="61cd8aa50675151dce983dac012188b0f2d039b2">
+        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e63361c68bc3f1efe469863dbbabd849d997e8f0/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/Users/ywshin/.android/build-cache/c345aa69673835c26399fe0ab4b12ebc6a017c0e/output/jars/classes.jar"
         jumboMode="false"
@@ -45,15 +54,6 @@
         revision="25.0.2"
         sha1="d38084015027549951cbaea5d5f6fb795cc81151">
         <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/pre-dexed/release/classes_523e5aaaf0ef7e21bc789e09ac14c23a969f4f41.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bc29b55ca8a4b1c88a2909d32884a9b48c07ce0e">
-        <dex dex="/Users/ywshin/StudioProjects/savepower/SelfGauge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e63361c68bc3f1efe469863dbbabd849d997e8f0/classes.dex" />
     </item>
     <item
         is-multidex="true"

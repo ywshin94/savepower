@@ -200,10 +200,6 @@ public class SettingActivity extends PreferenceActivity {
                 _log("sendMail");
                 mailToMe("ywshin94@gmail.com");
             }
-            else if(mKey.equals("mailDesigner")){
-                _log("sendMail");
-                mailToMe("shinsein1004@gmail.com");
-            }
 
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }

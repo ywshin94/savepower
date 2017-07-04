@@ -60,12 +60,6 @@
             android:title="개발자에게.."
             android:summary="개발자에게 메일을 보냅니다. 질문이든 의견이든 (욕이든;;) 언제나 환영합니다.\nywshin94@gmail.com"
             />
-
-        <Preference
-            android:key="mailDesigner"
-            android:title="디자이너에게.."
-            android:summary="아이콘을 그려준 예쁜 딸 세인이에게 감사를 전합니다. 응원 부탁합니다.\nshinsein1004@gmail.com"
-            />
     </PreferenceCategory>
 
 </PreferenceScreen>
