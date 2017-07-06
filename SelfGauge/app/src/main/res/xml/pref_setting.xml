@@ -58,7 +58,7 @@
         <Preference
             android:key="mailDeveloper"
             android:title="개발자에게.."
-            android:summary="개발자에게 메일을 보냅니다. 질문이든 의견이든 (욕이든;;) 언제나 환영합니다.\nywshin94@gmail.com"
+            android:summary="개발자에게 메일을 보냅니다.\nywshin94@gmail.com"
             />
     </PreferenceCategory>
 

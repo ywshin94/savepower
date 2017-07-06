@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     boolean mFirstCall = true;
 
-    static final String mYoilString[] = {"일","화","화","수","목","금","토"};
+    static final String mYoilString[] = {"일","월","화","수","목","금","토"};
 
     void _log(String log){
         Log.v(TAG, log);

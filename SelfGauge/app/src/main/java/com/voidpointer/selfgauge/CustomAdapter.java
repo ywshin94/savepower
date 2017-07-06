@@ -342,6 +342,7 @@ public class CustomAdapter extends BaseAdapter {
         int max_count = 3;
         int[] gibon = new int[6];
         double[] danwi = new double[6];
+        int under200 = 0;
 
         int powerType = ((MainActivity)MainActivity.mContext).getPrefPowerType();
         if( powerType == 0 ) {
@@ -368,6 +369,8 @@ public class CustomAdapter extends BaseAdapter {
             danwi[0] = 93.3;
             danwi[1] = 187.9;
             danwi[2] = 280.6;
+
+            under200 = 4000;
         }else{
             Log.v("ywshin", "고압");
             // 고압
@@ -392,6 +395,8 @@ public class CustomAdapter extends BaseAdapter {
             danwi[0] = 78.3;
             danwi[1] = 147.3;
             danwi[2] = 215.6;
+
+            under200 = 2500;
         }
 
         int electotal = 0;
@@ -417,7 +422,16 @@ public class CustomAdapter extends BaseAdapter {
             sayongryo+=(int)(danwi[group]*guganUsage+0.5);
         }
 
-        electotal=gibon[count-1]+sayongryo-bokjihalin;
+        electotal=gibon[count-1]+sayongryo;
+        if(usage <= 200) {
+            electotal -= under200;
+
+            if(electotal < 1000){
+                electotal = 1000; // 최소값
+            }
+        }
+
+        electotal -= bokjihalin;
 
         int bugase=(int)(electotal*0.1+0.5);
         int gibangigeum=((int)(electotal*0.037/10.))*10;
