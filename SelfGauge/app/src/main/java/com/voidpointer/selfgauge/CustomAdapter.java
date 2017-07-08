@@ -135,7 +135,8 @@ public class CustomAdapter extends BaseAdapter {
             int chargeAmount = charge - getElectricityBill(usageBefore);
 
             //text.setText(String.format("(+%s)", getMoneyString(chargeAmount)));
-            //text.setVisibility(View.VISIBLE);
+            text.setText("");
+            text.setVisibility(View.INVISIBLE);
 
             //text2.setText(String.format("(+%d)", usageThisMonth-usageBefore));
             text2.setText(String.format("+%s원, +%skWh", getMoneyString(chargeAmount), usageThisMonth-usageBefore) );
