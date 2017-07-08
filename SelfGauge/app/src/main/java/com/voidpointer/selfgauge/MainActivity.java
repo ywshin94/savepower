@@ -234,6 +234,11 @@ public class MainActivity extends AppCompatActivity {
         imageView.setVisibility(View.GONE);
     }
 
+    public void ShowForecastDetails(){
+        ForecastDetail dlgDetail = new ForecastDetail(this);
+        dlgDetail.show();
+    }
+
     @Override
     protected void onResume() {
         _log("MainActivity... onResume");

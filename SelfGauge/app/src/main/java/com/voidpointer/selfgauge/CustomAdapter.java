@@ -1,6 +1,7 @@
 package com.voidpointer.selfgauge;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.icu.text.IDNA;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -139,11 +140,12 @@ public class CustomAdapter extends BaseAdapter {
             text.setVisibility(View.INVISIBLE);
 
             //text2.setText(String.format("(+%d)", usageThisMonth-usageBefore));
-            text2.setText(String.format("+%s원, +%skWh", getMoneyString(chargeAmount), usageThisMonth-usageBefore) );
+            text2.setText(String.format("+%s원,  +%skWh", getMoneyString(chargeAmount), usageThisMonth-usageBefore) );
             text2.setVisibility(View.VISIBLE);
 
             //textExtend.setText(String.format("+%skWh, +%s원", usageThisMonth-usageBefore, getMoneyString(chargeAmount) ) );
-            //textExtend.setVisibility(View.VISIBLE);
+            text.setText("");
+            text.setVisibility(View.INVISIBLE);
         }
         else{
             text.setText("");
@@ -264,6 +266,14 @@ public class CustomAdapter extends BaseAdapter {
             infoNode.selected = false;
             convertView = inflater.inflate(R.layout.list_item_end, parent, false);
             setForecastItem(infoNode, convertView);
+
+            // 리스트 아이템을 터치 했을 때 이벤트 발생
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity) MainActivity.mContext).ShowForecastDetails();
+                }
+            });
         }
         else {
             // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
