@@ -128,20 +128,30 @@ public class CustomAdapter extends BaseAdapter {
         //
         text = (TextView) v.findViewById(R.id.textChargeAdd);
         TextView text2 = (TextView) v.findViewById(R.id.textUsageAdd);
+        TextView textExtend = (TextView) v.findViewById(R.id.textExtend);
+
         if( menuExpand && infoNodeBefore != null ) {
             int usageBefore = getUsageThisMonth(infoNodeBefore.usage);
             int chargeAmount = charge - getElectricityBill(usageBefore);
-            text.setText(String.format("(+%s)", getMoneyString(chargeAmount)));
-            text.setVisibility(View.VISIBLE);
 
-            text2.setText(String.format("(+%d)", usageThisMonth-usageBefore));
+            //text.setText(String.format("(+%s)", getMoneyString(chargeAmount)));
+            //text.setVisibility(View.VISIBLE);
+
+            //text2.setText(String.format("(+%d)", usageThisMonth-usageBefore));
+            text2.setText(String.format("+%s원, +%skWh", getMoneyString(chargeAmount), usageThisMonth-usageBefore) );
             text2.setVisibility(View.VISIBLE);
+
+            //textExtend.setText(String.format("+%skWh, +%s원", usageThisMonth-usageBefore, getMoneyString(chargeAmount) ) );
+            //textExtend.setVisibility(View.VISIBLE);
         }
         else{
             text.setText("");
             text.setVisibility(View.INVISIBLE);
             text2.setText("");
             text2.setVisibility(View.INVISIBLE);
+
+            textExtend.setText("");
+            textExtend.setVisibility(View. INVISIBLE);
         }
     }
 
@@ -285,7 +295,6 @@ public class CustomAdapter extends BaseAdapter {
                     ((MainActivity)MainActivity.mContext).editPowerUsage( infoNode );
                 }
             });
-
 
             // 리스트 아이템을 터치 했을 때 이벤트 발생
             convertView.setOnClickListener(new View.OnClickListener() {
