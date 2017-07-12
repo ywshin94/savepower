@@ -267,11 +267,35 @@ public class CustomAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item_end, parent, false);
             setForecastItem(infoNode, convertView);
 
+            // 수정 버튼
+            Button btnEdit = (Button) convertView.findViewById(R.id.btnDetail);
+            btnEdit.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    //((MainActivity) MainActivity.mContext).ShowForecastDetails();
+                    int usageThisMonth = getUsageThisMonth(infoNode.usage);
+                    ForecastDetail dlgDetail = new ForecastDetail(MainActivity.mContext);
+                    int electotal = getElecTotal(usageThisMonth);
+                    dlgDetail.details[0] = mGibon;
+                    dlgDetail.details[1] = electotal;
+                    dlgDetail.details[2] = mUnder200;
+                    electotal = adjustUnder200(usageThisMonth, electotal);
+                    dlgDetail.details[3] = electotal;
+
+                    int bugase=getBugase(electotal);
+                    int gibangigeum=getGibanGigeum(electotal);
+                    dlgDetail.details[4] = bugase;
+                    dlgDetail.details[5] = gibangigeum;
+                    dlgDetail.details[6] = getYogeum(electotal, bugase, gibangigeum);
+
+                    dlgDetail.show();
+                }
+            });
+
             // 리스트 아이템을 터치 했을 때 이벤트 발생
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MainActivity) MainActivity.mContext).ShowForecastDetails();
+
                 }
             });
         }
@@ -358,30 +382,18 @@ public class CustomAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public int getElectricityBill(int usage) {
+    int mGibon = 0;
+    int mUnder200 = 0;
+    public int getElecTotal(int usage) {
         int max_count = 3;
         int[] gibon = new int[6];
         double[] danwi = new double[6];
-        int under200 = 0;
+
 
         int powerType = ((MainActivity)MainActivity.mContext).getPrefPowerType();
         if( powerType == 0 ) {
             Log.v("ywshin", "저압");
             // 저압
-            /*gibon[0] = 410;
-            gibon[1] = 910;
-            gibon[2] = 1600;
-            gibon[3] = 3850;
-            gibon[4] = 7300;
-            gibon[5] = 12940;
-
-            danwi[0] = 60.7;
-            danwi[1] = 125.9;
-            danwi[2] = 187.9;
-            danwi[3] = 280.6;
-            danwi[4] = 417.7;
-            danwi[5] = 709.5;*/
-
             gibon[0] = 910;
             gibon[1] = 1600;
             gibon[2] = 7300;
@@ -390,24 +402,10 @@ public class CustomAdapter extends BaseAdapter {
             danwi[1] = 187.9;
             danwi[2] = 280.6;
 
-            under200 = 4000;
+            mUnder200 = 4000;
         }else{
             Log.v("ywshin", "고압");
             // 고압
-            /*gibon[0] = 410;
-            gibon[1] = 730;
-            gibon[2] = 1260;
-            gibon[3] = 3170;
-            gibon[4] = 6060;
-            gibon[5] = 10760;
-
-            danwi[0] = 57.6;
-            danwi[1] = 98.9;
-            danwi[2] = 147.3;
-            danwi[3] = 215.6;
-            danwi[4] = 325.7;
-            danwi[5] = 574.6;*/
-
             gibon[0] = 730;
             gibon[1] = 1260;
             gibon[2] = 6060;
@@ -416,7 +414,7 @@ public class CustomAdapter extends BaseAdapter {
             danwi[1] = 147.3;
             danwi[2] = 215.6;
 
-            under200 = 2500;
+            mUnder200 = 2500;
         }
 
         int electotal = 0;
@@ -430,7 +428,8 @@ public class CustomAdapter extends BaseAdapter {
             return 0;
         }
 
-        int bokjihalin = 0;
+        mGibon = gibon[count-1];
+
         int sayongryo = 0;
         for(int group=0; group<count; group++) {
             int guganUsage;
@@ -442,20 +441,45 @@ public class CustomAdapter extends BaseAdapter {
             sayongryo+=(int)(danwi[group]*guganUsage+0.5);
         }
 
-        electotal=gibon[count-1]+sayongryo;
-        if(usage <= 200) {
-            electotal -= under200;
+        electotal = mGibon+sayongryo;
 
+        return electotal;
+    }
+
+    public int adjustUnder200(int usage, int electotal) {
+        int bokjihalin = 0;
+        if(usage <= 200) {
+            electotal -= mUnder200;
             if(electotal < 1000){
                 electotal = 1000; // 최소값
             }
         }
 
         electotal -= bokjihalin;
+        return electotal;
+    }
 
+    public int getBugase(int electotal){
         int bugase=(int)(electotal*0.1+0.5);
+        return bugase;
+    }
+
+    public int getGibanGigeum(int electotal){
         int gibangigeum=((int)(electotal*0.037/10.))*10;
+        return gibangigeum;
+    }
+
+    public int getYogeum(int electotal, int bugase, int gibangigeum){
         int yogeum=((int)((electotal+bugase+gibangigeum)/10.))*10;
+        return yogeum;
+    }
+
+    public int getElectricityBill(int usage) {
+        int electotal = getElecTotal(usage);
+        electotal = adjustUnder200(usage, electotal);
+        int bugase=getBugase(electotal);
+        int gibangigeum=getGibanGigeum(electotal);
+        int yogeum=getYogeum(electotal, bugase, gibangigeum);
 
         //_log(String.format("사용량(%d) - 기본료(%d), 사용료(%d), 전기요금계(%d), 부가세(%d), 기반기금(%d), 청구요금(%d)", usage, gibon[count-1], sayongryo, electotal, bugase, gibangigeum, yogeum));
 

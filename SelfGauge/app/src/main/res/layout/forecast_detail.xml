@@ -5,9 +5,11 @@
     android:orientation="vertical"
     android:padding="14dp">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/text1"
         android:text="기본요금 : "
         android:background="@drawable/round_forecast_detail_sub"
         android:layout_marginBottom="8dp"
@@ -16,6 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/text2"
         android:text="전력양요금 : "
         android:background="@drawable/round_forecast_detail_sub"
         android:layout_marginBottom="8dp"
@@ -24,6 +27,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/text3"
         android:text="필수사용량 보장공제 : "
         android:background="@drawable/round_forecast_detail_sub"
         android:layout_marginBottom="8dp"
@@ -32,6 +36,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/text4"
         android:text="전기요금계 : "
         android:background="@drawable/round_forecast_detail_main"
         android:layout_marginBottom="15dp"
@@ -40,6 +45,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/text5"
         android:text="부가가치세 : "
         android:background="@drawable/round_forecast_detail_sub"
         android:layout_marginBottom="8dp"
@@ -48,6 +54,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/text6"
         android:text="전력산업 기반기금 : "
         android:background="@drawable/round_forecast_detail_sub"
         android:layout_marginBottom="8dp"
@@ -56,6 +63,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/text7"
         android:text="청구금액 : "
         android:background="@drawable/round_forecast_detail_main"
         />
