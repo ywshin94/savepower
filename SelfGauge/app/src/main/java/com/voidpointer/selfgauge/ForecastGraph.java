@@ -48,7 +48,7 @@ public class ForecastGraph extends View {
     private int mGridColor = Color.argb(255, 200, 200, 200);
 
     private int mPaddingTop = getPx(10);
-    private int mPaddingBottom = getPx(20);
+    private int mPaddingBottom = getPx(30);
     private int mPaddingLeft = getPx(20);
     private int mPaddingRight = getPx(20);
 
