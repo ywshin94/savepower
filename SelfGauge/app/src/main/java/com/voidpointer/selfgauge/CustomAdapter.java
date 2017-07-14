@@ -144,8 +144,8 @@ public class CustomAdapter extends BaseAdapter {
             text2.setVisibility(View.VISIBLE);
 
             //textExtend.setText(String.format("+%skWh, +%s원", usageThisMonth-usageBefore, getMoneyString(chargeAmount) ) );
-            text.setText("");
-            text.setVisibility(View.INVISIBLE);
+            textExtend.setText("");
+            textExtend.setVisibility(View.INVISIBLE);
         }
         else{
             text.setText("");
@@ -154,7 +154,7 @@ public class CustomAdapter extends BaseAdapter {
             text2.setVisibility(View.INVISIBLE);
 
             textExtend.setText("");
-            textExtend.setVisibility(View. INVISIBLE);
+            textExtend.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -275,6 +275,10 @@ public class CustomAdapter extends BaseAdapter {
                     int usageThisMonth = getUsageThisMonth(infoNode.usage);
                     ForecastDetail dlgDetail = new ForecastDetail(MainActivity.mContext);
                     int electotal = getElecTotal(usageThisMonth);
+
+                    dlgDetail.kwh[0] = infoNode.usage;
+                    dlgDetail.kwh[1] = usageThisMonth;
+
                     dlgDetail.details[0] = mGibon;
                     dlgDetail.details[1] = electotal;
                     dlgDetail.details[2] = mUnder200;
@@ -415,6 +419,10 @@ public class CustomAdapter extends BaseAdapter {
             danwi[2] = 215.6;
 
             mUnder200 = 2500;
+        }
+
+        if(usage > 200){
+            mUnder200 = 0;
         }
 
         int electotal = 0;

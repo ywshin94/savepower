@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 mAdView.setVisibility(View.VISIBLE);
                 AdRequest adRequest = new AdRequest.Builder().addTestDevice("985B8F7BFD0E460305E4FDBA57B9BE09").build();
                 mAdView.loadAd(adRequest);
+
             }
         }
         else{
@@ -274,7 +275,10 @@ public class MainActivity extends AppCompatActivity {
             getPermission();
         }
         LoadAd();
+        scroolLast();
     }
+
+
 
     public int getPrefPowerType(){
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -644,6 +648,7 @@ public class MainActivity extends AppCompatActivity {
         // 마직막 칸으로 스크롤
         int count = mListView.getCount();
         mListView.setSelection(count-1);
+        mListView.smoothScrollToPosition(count-1);
     }
 
     //Dialog custom;
@@ -685,9 +690,10 @@ public class MainActivity extends AppCompatActivity {
                 //
                 setDatabaseToAdapterAfterAdd();
 
-                scroolLast();
                 LoadAd();
                 ShowGuide();
+                scroolLast();
+
                 return 1;
             }
         });

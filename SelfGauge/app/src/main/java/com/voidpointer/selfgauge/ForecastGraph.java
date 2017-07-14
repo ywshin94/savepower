@@ -48,7 +48,7 @@ public class ForecastGraph extends View {
     private int mGridColor = Color.argb(255, 200, 200, 200);
 
     private int mPaddingTop = getPx(10);
-    private int mPaddingBottom = getPx(30);
+    private int mPaddingBottom = getPx(22)+mFontSize;
     private int mPaddingLeft = getPx(20);
     private int mPaddingRight = getPx(20);
 
@@ -121,9 +121,9 @@ public class ForecastGraph extends View {
         //누진구간 표시
         for( int i=0; i<2; i++) {
             mCanvas.drawLine(mPaddingLeft, getYPx(mNoojin[i]), wndWidth - mPaddingRight, getYPx(mNoojin[i]), mPaint);
-            mCanvas.drawText(mNoojinText[i], mPaddingLeft, getYPx(mNoojin[i])+getPx(mFontSize/2), mPaint);
+            mCanvas.drawText(mNoojinText[i], mPaddingLeft, getYPx(mNoojin[i])+mFontSize+getPx(1), mPaint);
 
-            if( getYPx(mNoojin[i]) > mPaddingTop+getPx(mFontSize/2)) {
+            if( getYPx(mNoojin[i]) > mPaddingTop+mFontSize-getPx(1)) {
                 drawMoneyString(mNoojin[i]);
             }
         }
@@ -148,7 +148,7 @@ public class ForecastGraph extends View {
     private void drawDateString( int xvalue, Calendar date ){
         String dateStr = MainActivity.getDateStringShort(date);
         float width = mPaint.measureText(dateStr, 0, dateStr.length());
-        mCanvas.drawText(dateStr, xvalue-width/2, getHeight()-mPaddingBottom+getPx(mFontSize/2), mPaint);
+        mCanvas.drawText(dateStr, xvalue-width/2, getHeight()-mPaddingBottom+mFontSize+getPx(3), mPaint);
     }
 
     private void drawMoneyString( int money ){
