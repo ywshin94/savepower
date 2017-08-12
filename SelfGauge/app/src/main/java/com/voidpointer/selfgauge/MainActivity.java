@@ -327,6 +327,10 @@ public class MainActivity extends AppCompatActivity {
         mCalEnd.set(Calendar.MINUTE, 59);
         mCalEnd.set(Calendar.SECOND, 59);
         mCalEnd.set(Calendar.MILLISECOND, 999);
+        //mCalEnd.set(Calendar.HOUR_OF_DAY, 12);
+        //mCalEnd.set(Calendar.MINUTE, 0);
+        //mCalEnd.set(Calendar.SECOND, 0);
+        //mCalEnd.set(Calendar.MILLISECOND, 0);
 
         if( mMonthShift != 0 ){
             mCalStart.add(Calendar.MONTH, mMonthShift);
@@ -449,6 +453,8 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper.close();
         return guess_usage;
     }
+
+
     /**
      * DB에서 받아온 값을 ArrayList에 Add
      */
@@ -467,6 +473,7 @@ public class MainActivity extends AppCompatActivity {
         int lastcheck_usage = 0;
 
         int id = -1;
+        long start_datetime = 0;
         long datetime = 0;
         String type = "";
         int usage = 0;
@@ -495,6 +502,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     bGijoonGap = true;
                     startdate_usage = usage;
+                    start_datetime = datetime;
                 }
                 bFirst = false;
             }
@@ -510,6 +518,7 @@ public class MainActivity extends AppCompatActivity {
         // 첫 임시 노드 지침 예측
 
         if(!bGijoonGap){
+            start_datetime = mCalStart.getTimeInMillis();
             startdate_usage = guessFirstUsage();
             if(startdate_usage>0) {
                 InfoClass firstNode = (InfoClass) mAdapter.getItem(0);
@@ -521,47 +530,67 @@ public class MainActivity extends AppCompatActivity {
         // 예상 요금
         //if( itemCount>=2 && mMonthShift == 0) {
         if(startdate_usage > 0 ){
-            int month_usage;
+            Calendar endCalendar = Calendar.getInstance();
+            endCalendar.setTimeInMillis(mCalEnd.getTimeInMillis());
+            endCalendar.set(Calendar.HOUR_OF_DAY, 12);  // mCalEnd 를 받아서 시간을 낮 12시로 고침
+            endCalendar.set(Calendar.MINUTE, 0);
+            endCalendar.set(Calendar.SECOND, 0);
+            endCalendar.set(Calendar.MILLISECOND, 0);
+
             String comment;
+            if( datetime >= endCalendar.getTimeInMillis() ){
+                int usage_shift = lastcheck_usage - startdate_usage;
+                long datetime_shift = datetime - start_datetime;
+                float usage_datetime = (float) usage_shift / (float) datetime_shift;
 
-            int usage_shift = lastcheck_usage - startdate_usage;
-            long datetime_shift = datetime - mCalStart.getTimeInMillis();
-
-            float usage_datetime = (float) usage_shift / (float) datetime_shift;
-
-            long remain_datetime = mCalEnd.getTimeInMillis() - datetime;
-            int remain_days = (int) (remain_datetime / 1000. / 60. / 60. / 24.);
-            int remain_usage = (int) (remain_datetime * usage_datetime);
-            month_usage = lastcheck_usage + remain_usage;
-
-            _log("lastcheck_usage : " + lastcheck_usage);
-            _log("startdate_usage : " + startdate_usage);
-            _log("usage_shift : " + usage_shift);
-
-            if(bGijoonGap) {
-                comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용했습니다.\n검침일까지 %d일 남았고, %.1f(kWh) 정도 더 사용할 것 같아요.",
-                        usage_datetime * 24 * 60 * 60 * 1000, remain_days, remain_datetime * usage_datetime);
+                comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용했습니다.\n마지막 지침을 기준으로 예상전기요금을 계산합니다.",
+                        usage_datetime * 24 * 60 * 60 * 1000);
+                mInfoClass = new InfoClass(-2, datetime, type, lastcheck_usage, comment);
+                mAdapter.add(mInfoClass);
             }
-            else{
-                if(mFirstUsageGuessType == FirstUsageGuessType._DidNotGuess) {
-                    comment = "";
-                }
-                else {
-                    if (mFirstUsageGuessType == FirstUsageGuessType._WithCur1Value) {
-                        comment = String.format("하루에 %.1f(kWh) 정도 사용한 것으로 가정합니다.",
-                                usage_datetime * 24 * 60 * 60 * 1000);
+            else {
+                int month_usage;
+
+                int usage_shift = lastcheck_usage - startdate_usage;
+                long datetime_shift = datetime - start_datetime;
+
+                float usage_datetime = (float) usage_shift / (float) datetime_shift;
+
+
+                long remain_datetime = endCalendar.getTimeInMillis() - datetime; // 기준이 낮 12시라면 음수가 나올 수도 있음.
+                float remain_days = (float) (remain_datetime / 1000. / 60. / 60. / 24.);
+                int remain_usage = (int) (remain_datetime * usage_datetime);
+                month_usage = lastcheck_usage + remain_usage;
+
+                _log("lastcheck_usage : " + lastcheck_usage);
+                _log("startdate_usage : " + startdate_usage);
+                _log("usage_shift : " + usage_shift);
+
+                if (bGijoonGap) {
+                    comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용했습니다.\n검침일까지 %.1f일 남았고, %.1f(kWh) 정도 더 사용할 것 같아요.",
+                            usage_datetime * 24 * 60 * 60 * 1000, remain_days, remain_datetime * usage_datetime);
+                } else {
+                    if (mFirstUsageGuessType == FirstUsageGuessType._DidNotGuess) {
+                        comment = "";
                     } else {
-                        comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용한 것 같습니다.",
-                                usage_datetime * 24 * 60 * 60 * 1000);
+                        if (mFirstUsageGuessType == FirstUsageGuessType._WithCur1Value) {
+                            comment = String.format("하루에 %.1f(kWh) 정도 사용한 것으로 가정합니다.",
+                                    usage_datetime * 24 * 60 * 60 * 1000);
+                        } else {
+                            comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용한 것 같습니다.",
+                                    usage_datetime * 24 * 60 * 60 * 1000);
+                        }
+                        comment = String.format("%s\n검침일까지 %.1f일 남았고, %.1f(kWh) 정도 더 사용할 것 같아요.",
+                                comment, remain_days, remain_datetime * usage_datetime);
+                        comment = String.format("%s\n지난달 검침결과를 입력하면 더욱 정확한 예상전기요금을 확인하실 수 있습니다.", comment);
                     }
-                    comment = String.format("%s\n검침일까지 %d일 남았고, %.1f(kWh) 정도 더 사용할 것 같아요.",
-                            comment, remain_days, remain_datetime * usage_datetime);
-                    comment = String.format("%s\n지난달 검침결과를 입력하면 더욱 정확한 예상전기요금을 확인하실 수 있습니다.", comment);
                 }
+
+                mInfoClass = new InfoClass(-2, mCalEnd.getTimeInMillis(), type, month_usage, comment);
+                mAdapter.add(mInfoClass);
             }
 
-            mInfoClass = new InfoClass(-2, mCalEnd.getTimeInMillis(), type, month_usage, comment);
-            mAdapter.add(mInfoClass);
+
         }
     }
 

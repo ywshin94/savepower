@@ -142,9 +142,12 @@ public class DBHelper {
     }
 
     public Cursor getRangeColumns(Calendar calStart, Calendar calEnd){
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.setTimeInMillis(calEnd.getTimeInMillis());
+
         String selection = String.format("%s >= %d AND %s <= %d",
                 Tables.Usage.DATE, calStart.getTimeInMillis(),
-                Tables.Usage.DATE, calEnd.getTimeInMillis());
+                Tables.Usage.DATE, endCalendar.getTimeInMillis());
         Log.v("ywshin", String.format("[getRangeColumns] %s", selection));
         return mDB.query(Tables.Usage._TABLENAME, null, selection, null, null, null, "date asc");
     }

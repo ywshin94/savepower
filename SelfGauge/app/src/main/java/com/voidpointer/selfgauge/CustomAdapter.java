@@ -267,7 +267,7 @@ public class CustomAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item_end, parent, false);
             setForecastItem(infoNode, convertView);
 
-            // 수정 버튼
+            // 자세히보기 버튼
             Button btnEdit = (Button) convertView.findViewById(R.id.btnDetail);
             btnEdit.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
