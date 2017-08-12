@@ -42,6 +42,20 @@ public class CustomAdapter extends BaseAdapter {
         mInfoList.clear();
     }
 
+    public static int getUpscaleAmount(int usage){
+        int upscale = 0;
+        if(usage < 10000){
+            upscale = 10000;
+        }
+        else if(10000 <= usage && usage < 100000){
+            upscale = 100000;
+        }
+        else if(100000 <= usage && usage < 1000000){
+            upscale = 1000000;
+        }
+        return upscale;
+    }
+
     public int getUsageThisMonth(int usage){
         int firstUsage;
         InfoClass first;
@@ -49,6 +63,12 @@ public class CustomAdapter extends BaseAdapter {
         firstUsage = first.usage;
 
         int res = usage - firstUsage;
+        if( res < -5000 ){
+            // 9999 다음에 0부터 다시 시작하기 때문에 값을 스케일링 해 줘야 한다.
+            // 0부터 시작하는 값을 그냥 입력하면 요금 계산할때 알아서 한다.
+            usage += getUpscaleAmount(firstUsage);
+            res = usage - firstUsage;
+        }
         return res;
     }
 

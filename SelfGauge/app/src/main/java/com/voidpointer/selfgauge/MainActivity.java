@@ -408,9 +408,22 @@ public class MainActivity extends AppCompatActivity {
             mCursor.moveToLast();
             int usageLast= mCursor.getInt(mCursor.getColumnIndex("usage"));
             long datetimeLast = mCursor.getLong(mCursor.getColumnIndex("date"));
-            float usage_datetime = (float) (usageLast-curUsageFirst) / (float) (datetimeLast-curDateTimeFirst);
+
+
+            // 계량기 초기화 처리
+            int usage_shift = usageLast - curUsageFirst;
+            if(usage_shift < -5000){
+                usage_shift = usageLast-(curUsageFirst-CustomAdapter.getUpscaleAmount(curUsageFirst));
+            }
+
+            float usage_datetime = (float)usage_shift / (float) (datetimeLast-curDateTimeFirst);
 
             guess_usage = (int)(curUsageFirst - usage_datetime*(curDateTimeFirst-mCalStart.getTimeInMillis()) + 0.5);
+
+            if(guess_usage < 0 ){
+                guess_usage += CustomAdapter.getUpscaleAmount(curUsageFirst);
+            }
+
             mFirstUsageGuessType = FirstUsageGuessType._WithCur2Value;
 
             //if(guess_usage>curUsageFirst){
@@ -434,9 +447,19 @@ public class MainActivity extends AppCompatActivity {
                 mCursor.moveToLast();
                 int usageLast= mCursor.getInt(mCursor.getColumnIndex("usage"));
                 long datetimeLast = mCursor.getLong(mCursor.getColumnIndex("date"));
-                float usage_datetime = (float)(curUsageFirst-usageLast) / (float)(curDateTimeFirst-datetimeLast);
+
+                // 계량기 초기화 처리
+                int usage_shift = curUsageFirst-usageLast;
+                if(usage_shift < -5000){
+                    usage_shift = curUsageFirst-(usageLast-CustomAdapter.getUpscaleAmount(usageLast));
+                }
+
+                float usage_datetime = (float)usage_shift / (float)(curDateTimeFirst-datetimeLast);
 
                 guess_usage = (int)(curUsageFirst - usage_datetime*(curDateTimeFirst-mCalStart.getTimeInMillis()) + 0.5);
+                if(guess_usage < 0 ){
+                    guess_usage += CustomAdapter.getUpscaleAmount(usageLast);
+                }
                 mFirstUsageGuessType = FirstUsageGuessType._WithCur1Last1Value;
             }
             else{
@@ -516,7 +539,6 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper.close();
 
         // 첫 임시 노드 지침 예측
-
         if(!bGijoonGap){
             start_datetime = mCalStart.getTimeInMillis();
             startdate_usage = guessFirstUsage();
@@ -538,11 +560,17 @@ public class MainActivity extends AppCompatActivity {
             endCalendar.set(Calendar.MILLISECOND, 0);
 
             String comment;
-            if( datetime >= endCalendar.getTimeInMillis() ){
-                int usage_shift = lastcheck_usage - startdate_usage;
-                long datetime_shift = datetime - start_datetime;
-                float usage_datetime = (float) usage_shift / (float) datetime_shift;
+            int usage_shift = lastcheck_usage - startdate_usage;
+            if(usage_shift < -5000){
+                startdate_usage -= CustomAdapter.getUpscaleAmount(startdate_usage);
+                usage_shift = lastcheck_usage - startdate_usage;
 
+            }
+            long datetime_shift = datetime - start_datetime;
+            float usage_datetime = (float) usage_shift / (float) datetime_shift;
+
+            if( datetime >= endCalendar.getTimeInMillis() ){
+                // 검침일 12시 넘은 지침이 있을 경우 그 값을 기준으로 한다.
                 comment = String.format("이번달에는 하루에 %.1f(kWh) 정도 사용했습니다.\n마지막 지침을 기준으로 예상전기요금을 계산합니다.",
                         usage_datetime * 24 * 60 * 60 * 1000);
                 mInfoClass = new InfoClass(-2, datetime, type, lastcheck_usage, comment);
@@ -551,10 +579,14 @@ public class MainActivity extends AppCompatActivity {
             else {
                 int month_usage;
 
-                int usage_shift = lastcheck_usage - startdate_usage;
-                long datetime_shift = datetime - start_datetime;
+             //   int usage_shift = lastcheck_usage - startdate_usage;
+               // if(usage_shift < -5000){
+                 //   startdate_usage -= CustomAdapter.getUpscaleAmount(startdate_usage);
+                   // usage_shift = lastcheck_usage - startdate_usage;
 
-                float usage_datetime = (float) usage_shift / (float) datetime_shift;
+                //}
+                //long datetime_shift = datetime - start_datetime;
+                //float usage_datetime = (float) usage_shift / (float) datetime_shift;
 
 
                 long remain_datetime = endCalendar.getTimeInMillis() - datetime; // 기준이 낮 12시라면 음수가 나올 수도 있음.
