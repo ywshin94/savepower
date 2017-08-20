@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     static final String mYoilString[] = {"일","월","화","수","목","금","토"};
 
+    public static boolean mIsDataReconstituted = false;
+
     void _log(String log){
         Log.v(TAG, log);
     }
@@ -164,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             mAdView.setVisibility(View.GONE);
         }
 
+        //mAdView.setVisibility(View.GONE);
     }
 
     public boolean IsShowGuide1(){
@@ -272,7 +275,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else {
-            getPermission();
+            if( getPermission() ) {
+                if (mIsDataReconstituted) {
+                    setDatabaseToAdapterAfterAdd();
+                    mIsDataReconstituted = false;
+                }
+            }
         }
         LoadAd();
         scroolLast();
@@ -564,7 +572,6 @@ public class MainActivity extends AppCompatActivity {
             if(usage_shift < -5000){
                 startdate_usage -= CustomAdapter.getUpscaleAmount(startdate_usage);
                 usage_shift = lastcheck_usage - startdate_usage;
-
             }
             long datetime_shift = datetime - start_datetime;
             float usage_datetime = (float) usage_shift / (float) datetime_shift;
@@ -578,16 +585,6 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 int month_usage;
-
-             //   int usage_shift = lastcheck_usage - startdate_usage;
-               // if(usage_shift < -5000){
-                 //   startdate_usage -= CustomAdapter.getUpscaleAmount(startdate_usage);
-                   // usage_shift = lastcheck_usage - startdate_usage;
-
-                //}
-                //long datetime_shift = datetime - start_datetime;
-                //float usage_datetime = (float) usage_shift / (float) datetime_shift;
-
 
                 long remain_datetime = endCalendar.getTimeInMillis() - datetime; // 기준이 낮 12시라면 음수가 나올 수도 있음.
                 float remain_days = (float) (remain_datetime / 1000. / 60. / 60. / 24.);
@@ -621,8 +618,6 @@ public class MainActivity extends AppCompatActivity {
                 mInfoClass = new InfoClass(-2, mCalEnd.getTimeInMillis(), type, month_usage, comment);
                 mAdapter.add(mInfoClass);
             }
-
-
         }
     }
 

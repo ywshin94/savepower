@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "634235060399",
+    "firebase_url": "https://selfgauge-47187.firebaseio.com",
+    "project_id": "selfgauge-47187",
+    "storage_bucket": "selfgauge-47187.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634235060399:android:7a772315b020b67c",
+        "android_client_info": {
+          "package_name": "com.voidpointer.selfgauge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634235060399-le0kobdp0o5lvg8pn5vq27d161mfmjpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.voidpointer.selfgauge",
+            "certificate_hash": "d062fcacb5f60100584e59be5e33b967a07d20d9"
+          }
+        },
+        {
+          "client_id": "634235060399-anavn4lihvlf6ms289uon8aklfs59os8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9THPj5qlVWUA4P5wGTfXqtMYQRrBrGIw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634235060399-anavn4lihvlf6ms289uon8aklfs59os8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

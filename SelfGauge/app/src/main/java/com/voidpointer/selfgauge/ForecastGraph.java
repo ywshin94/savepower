@@ -226,6 +226,7 @@ public class ForecastGraph extends View {
             y2 = getYPx(getDataSet(i+1).mCharge);
 
             if( i==getDataSize()-2 ){
+                // 예상 그래프 (점선)
                 int colorAccent = ContextCompat.getColor(getContext(), R.color.colorAccent);
                 setDotLine(colorAccent, 4);
                 drawDotLine(x1, y1, x2, y2);

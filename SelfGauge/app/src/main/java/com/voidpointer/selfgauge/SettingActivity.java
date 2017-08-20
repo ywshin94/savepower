@@ -109,10 +109,11 @@ public class SettingActivity extends PreferenceActivity {
                                     // 'YES'
                                     File download = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
                                     String target = DBHelper.getDbPath();
-                                    String source = download + "\\" + DBHelper.getDbName();
+                                    String source = download + "/" + DBHelper.getDbName();
 
                                     String message;
                                     if( fileCopy(source, target) ){
+                                        MainActivity.mIsDataReconstituted = true;
                                         message = "데이터 복구를 완료했습니다. 기존의 데이터는 삭제 되었습니다.";
                                     }else{
                                         message = "데이터 복구를 실패했습니다. 이 기기의 download 폴더에 복구할 selfgauge.db 파일이 있는지 다시한번 확인하세요.";
@@ -221,6 +222,8 @@ public class SettingActivity extends PreferenceActivity {
             getPreferenceManager()
                     .getSharedPreferences()
                     .registerOnSharedPreferenceChangeListener(this);
+
+            MainActivity.mIsDataReconstituted = false;
         }
 
         @Override
